@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" type="text/css" href="css/adalert.css" />
+        <title>adAlert mobile [0.0.1]</title>
+
+        <script type="text/javascript" src="js/jquery-latest.js"></script>
+        <script type="text/javascript" src="js/underscore.js"></script>
+		<script type="text/javascript" src="js/cordova-2.7.0.js"></script>
+		<script type="text/javascript" src="js/phoneInfoPlugin.js"></script>
+		<script type="text/javascript" src="js/adalert.js"></script>
+    </head>
+    <body>
+    	<header>
+			<div class="headerLogo"><img src="img/logo.png" width="70" /></div>
+			<div class="headerTitle">
+				<div class="headerTxtTitle">adAlert mobile</div>
+				<div class="headerTxtSubTitle">(c) SETTING. v.0.0.1</div>
+			</div>
+    	</header>
+    	
+    	<section id="app" class="mainSection">
+    		<div id="botonera" class="mainDiv">
+    			<br/>
+    			<center>
+    				<button id="btnInfoPhone" class="botoRnd btn100x100" type="button" onclick="app.infoTelefon();">Info telèfon</button>
+    			</center>
+    		</div>
+    		
+            <div id="infoTelefon" class="mainDiv"></div>
+    	</section>
+
+		<footer>
+			<div id="" class="esquerra"></div>
+			<div id="" class="dreta"></div>
+		</footer>
+		        	
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+        
+		<!-- Cap troballa en la cerca de fires -->
+		<script type="text/template" id="infoTelefon_template">
+           	<p class="titolSeccio"><label id="txtTitolDreta">Informació dispositiu</label>
+				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
+			</p>
+
+			<table border="0" cellspacing="2" cellpadding="2">
+				<tr>
+					<td>Device Name</td>
+					<td><%= deviceName %></td>
+				</tr>
+				<tr>
+					<td>Device Cordova</td>
+					<td><%= deviceCordova %></td>
+				</tr>
+				<tr> 
+	        		<td>Device Platform</td>
+					<td><%= devicePlatform %></td>
+				</tr>
+				<tr> 
+	        		<td>Device UUID</td>
+					<td><%= deviceUUID %></td>
+				</tr>
+				<tr> 
+	        		<td>Device Version</td>
+					<td><%= deviceVersion %></td>
+				</tr>
+				<tr> 
+	        		<td>phoneType</td>
+					<td><%= phoneType %></td>
+				</tr>
+				<tr> 
+	        		<td>deviceId</td>
+					<td><%= deviceId %></td>
+				</tr>
+				<tr> 
+	        		<td>deviceSoftwareVersion</td>
+					<td><%= deviceSoftwareVersion %></td>
+				</tr>
+				<tr> 
+	        		<td>line1Number</td>
+					<td><%= line1Number %></td>
+				</tr>
+				<tr> 
+	        		<td>subscriberId</td>
+					<td><%= subscriberId %></td>
+				</tr>
+				<tr> 
+	        		<td>simState</td>
+					<td><%= simState %></td>
+				</tr>
+				<tr> 
+	        		<td>simCountryIso</td>
+					<td><%= simCountryIso %></td>
+				</tr>
+				<tr> 
+	        		<td>simOperatorName</td>
+					<td><%= simOperatorName %></td>
+				</tr>
+				<tr> 
+	        		<td>simSerialNumber</td>
+					<td><%= simSerialNumber %></td>
+				</tr>
+				<tr> 
+	        		<td>networkCountryIso</td>
+					<td><%= networkCountryIso %></td>
+				</tr>
+				<tr> 
+	        		<td>networkOperator</td>
+					<td><%= networkOperator %></td>
+				</tr>
+				<tr> 
+	        		<td>networkOperatorName</td>
+					<td><%= networkOperatorName %></td>
+				</tr>
+			</table> 
+		</script>
+
+    </body>
+</html>
+
