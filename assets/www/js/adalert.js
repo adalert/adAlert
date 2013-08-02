@@ -6,6 +6,7 @@
 
 var WIN_MENU = "botonera";
 var WIN_INFO_TELEFON = "infoTelefon"
+var WIN_PARAMETRES = "parametres"
 
 var app = (function() {
     var phoneType = "";
@@ -38,6 +39,8 @@ var app = (function() {
 	    // The scope of 'this' is the event. In order to call the 'receivedEvent'
 	    // function, we must explicity call 'app.receivedEvent(...);'
 	    onDeviceReady: function() {	
+	    	initBDParametres();
+	    	
 	    	app.activa("botonera");
 	    	
 	        window.plugins.phoneinfoplugin.onSuccess = function(data) {
@@ -66,6 +69,13 @@ var app = (function() {
 	    // Manú prinicpal
 	    menu: function() {
 	    	app.activa(WIN_MENU);
+	    },
+
+	    // Paràmetres de l'aplicació
+	    parametres: function() {
+	    	listParametres();
+	    	
+	    	app.activa(WIN_PARAMETRES);
 	    },
 	    
 	    // Informació telèfon
@@ -101,6 +111,7 @@ var app = (function() {
 	    activa: function(obj) {
 	    	$("#botonera").hide();
 	    	$("#infoTelefon").hide();
+	    	$("#parametres").hide();
 	    	
 	    	$("#" + obj).show();
 	    }

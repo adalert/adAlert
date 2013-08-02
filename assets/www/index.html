@@ -13,6 +13,7 @@
 		<script type="text/javascript" src="js/cordova.js"></script>
 		<script type="text/javascript" src="js/phoneInfoPlugin.js"></script>
 		<script type="text/javascript" src="js/adalert.js"></script>
+		<script type="text/javascript" src="js/parametres.js"></script>
     </head>
     <body>
     	<header>
@@ -27,14 +28,16 @@
     		<div id="botonera" class="mainDiv">
     			<br/>
     			<center>
-    				adAlert<br/>
-    				<button id="btnInfoPhone" class="botoRnd btn100x100" type="button" onclick="app.infoTelefon();">Info telèfon</button>
+    				<button id="btnInfoPhone" class="botoRnd btn100x100" type="button" onclick="app.infoTelefon();">Info telèfon</button><br/>
+    				<br/>
+    				<button id="btnParametres" class="botoRnd btn100x100" type="button" onclick="app.parametres();">Paràmetres</button>
     			</center>
     		</div>
     		
             <div id="infoTelefon" class="mainDiv"></div>
+	    	<div id="parametres" class="mainDiv"></div>
     	</section>
-
+    
 		<footer>
 			<div id="" class="esquerra"></div>
 			<div id="" class="dreta"></div>
@@ -44,7 +47,23 @@
             app.initialize();
         </script>
         
-		<!-- Cap troballa en la cerca de fires -->
+		<!-- Gestió de paràmetres -->
+		<script type="text/template" id="parametres_template">
+           	<p class="titolSeccio"><label id="txtTitolDreta">Paràmetres</label>
+				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
+			</p>
+
+			<table border="0" cellspacing="2" cellpadding="2">
+			<% for(i=0; i<output.length; i++) { %>
+				<tr>
+					<td>Key: <%= output[i][0] %></td>
+					<td>Value: <%= output[i][1] %></td>
+				</tr>			
+			<% } %>
+			</table>
+		</script>
+		
+		<!-- Informació del dispositiu -->
 		<script type="text/template" id="infoTelefon_template">
            	<p class="titolSeccio"><label id="txtTitolDreta">Informació dispositiu</label>
 				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
