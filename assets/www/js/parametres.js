@@ -22,13 +22,10 @@ function listParametres() {
                 	 output.push([result.rows.item(i)['key'],
                              result.rows.item(i)['value']]);
                  }
-                 alert(output.length);
+                 var div_res = _.template($("#parametres_template").html());
+                 $("#parametres").html(div_res({output: output}));
              }
-		 	alert(output.length);
 		 );
-		 alert(output.length);
-         var div_res = _.template($("#parametres_template").html());
-         $("#parametres").html(div_res({output: output}));
      });
 }
  

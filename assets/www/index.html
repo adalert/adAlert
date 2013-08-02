@@ -53,11 +53,11 @@
 				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
 			</p>
 
-			<table border="0" cellspacing="2" cellpadding="2">
+			<table border="1" cellspacing="2" cellpadding="2">
 			<% for(i=0; i<output.length; i++) { %>
 				<tr>
-					<td>Key: <%= output[i][0] %></td>
-					<td>Value: <%= output[i][1] %></td>
+					<td><%= output[i][0] %></td>
+					<td><%= output[i][1] %></td>
 				</tr>			
 			<% } %>
 			</table>
