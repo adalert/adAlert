@@ -6,9 +6,9 @@ function initBDParametres() {
 		// Database opened
 		db.transaction( function(tx) {
 			tx.executeSql("CREATE TABLE IF NOT EXISTS parametres(key text primary key, value text)");
-			tx.executeSql("INSERT INTO parametres(key, value) VALUES('adreca','http://')");
-			tx.executeSql("INSERT INTO parametres(key, value) VALUES('usuari','')");
-			tx.executeSql("INSERT INTO parametres(key, value) VALUES('password','')");
+			tx.executeSql("INSERT INTO parametres(key, value) VALUES('adreca','http://192.168.1.71')");
+			tx.executeSql("INSERT INTO parametres(key, value) VALUES('usuari','administrador')");
+			tx.executeSql("INSERT INTO parametres(key, value) VALUES('password','Barcel0na')");
 		});
 	}
 }

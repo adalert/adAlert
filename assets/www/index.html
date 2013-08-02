@@ -53,14 +53,27 @@
 				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
 			</p>
 
-			<table border="1" cellspacing="2" cellpadding="2">
-			<% for(i=0; i<output.length; i++) { %>
-				<tr>
-					<td><%= output[i][0] %></td>
-					<td><%= output[i][1] %></td>
-				</tr>			
-			<% } %>
-			</table>
+			<br/>
+    		<center>
+				<table>
+					<thead>
+						<tr>
+							<th>Key</th>
+							<th>Valor</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for(i=0; i<output.length; i++) { %>
+							<tr>
+								<td><%= output[i][0] %></td>
+								<td><%= output[i][1] %></td>
+							</tr>			
+						<% } %>
+					</tbody>
+				</table>				
+			</center>
+
+
 		</script>
 		
 		<!-- Informació del dispositiu -->
