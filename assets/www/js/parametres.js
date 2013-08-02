@@ -19,12 +19,14 @@ function listParametres() {
 		 tx.executeSql("SELECT * FROM parametres", [],
              function(tx, result){
                  for(var i=0; i < result.rows.length; i++) {
-                     output.push([result.rows.item(i)['key'],
+                	 output.push([result.rows.item(i)['key'],
                              result.rows.item(i)['value']]);
                  }
+                 alert(output.length);
              }
+		 	alert(output.length);
 		 );
-
+		 alert(output.length);
          var div_res = _.template($("#parametres_template").html());
          $("#parametres").html(div_res({output: output}));
      });
