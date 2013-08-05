@@ -14,6 +14,8 @@
 		<script type="text/javascript" src="js/phoneInfoPlugin.js"></script>
 		<script type="text/javascript" src="js/adalert.js"></script>
 		<script type="text/javascript" src="js/parametres.js"></script>
+		<script type="text/javascript" src="js/alarmes.js"></script>
+		
     </head>
     <body>
     	<header>
@@ -28,14 +30,29 @@
     		<div id="botonera" class="mainDiv">
     			<br/>
     			<center>
-    				<button id="btnInfoPhone" class="botoRnd btn100x100" type="button" onclick="app.infoTelefon();">Info telèfon</button><br/>
-    				<br/>
-    				<button id="btnParametres" class="botoRnd btn100x100" type="button" onclick="app.parametres();">Paràmetres</button>
-    			</center>
-    		</div>
+    			<table border="0" cellspacing="2" cellpadding="2">
+    				<tr>
+    					<td colspan="2">
+							<button id="btnEnviament" class="botoRnd btn250x75" type="button" onclick="app.alarmes();">Enviar alarma</button>
+    					</td>
+    				</tr>
+   					<tr>
+   						<td align="left">
+    						<button id="btnInfoPhone" class="botoRnd btn100x100" type="button" onclick="app.infoTelefon();">Info telèfon</button>
+    					</td>
+    					<td align="right">
+    						<button id="btnParametres" class="botoRnd btn100x100" type="button" onclick="app.parametres();"><img src="img/parametres.png" width="50" /></button>
+    					</td>
+    				</tr>
+   				</table>
+	   			</center>
+	   			
+	   			
+   			</div>
     		
             <div id="infoTelefon" class="mainDiv"></div>
 	    	<div id="parametres" class="mainDiv"></div>
+	    	<div id="alarmes" class="mainDiv"></div>
     	</section>
     
 		<footer>
@@ -47,6 +64,23 @@
             app.initialize();
         </script>
         
+        <!-- Enviament d'alarmes -->
+        <script type="text/template" id="alarmes_template">
+           	<p class="titolSeccio"><label id="txtTitolDreta">Enviament d'alarma</label>
+				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
+			</p>
+
+			<br/>
+
+			<center>
+				<button id="btnSanitaria" class="botoRnd btn200x75" type="button" onclick="app.sanitaria();">Nova alarma Sanitària</button>
+				<br/>
+				<br/>
+				<button id="btnAgressio" class="botoRnd btn200x75" type="button" onclick="app.agressio();">Nova alarma d'Agressió</button>    		
+			</center>
+		
+		</script>
+        
 		<!-- Gestió de paràmetres -->
 		<script type="text/template" id="parametres_template">
            	<p class="titolSeccio"><label id="txtTitolDreta">Paràmetres</label>
@@ -54,25 +88,41 @@
 			</p>
 
 			<br/>
-    		<center>
-				<table>
-					<thead>
+    		<!-- <table>
+				<tbody>
+					<% for(i=0; i<output.length; i++) { %>
 						<tr>
-							<th>Key</th>
-							<th>Valor</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% for(i=0; i<output.length; i++) { %>
-							<tr>
-								<td><%= output[i][0] %></td>
-								<td><%= output[i][1] %></td>
-							</tr>			
-						<% } %>
-					</tbody>
-				</table>				
-			</center>
+							<td><strong><%= output[i][0] %> : </strong></td>
+							<td> <%= output[i][1] %></td>
+						</tr>			
+					<% } %>
+				</tbody>
+			</table>	-->			
+			
+			<!-- Aqui pondremos una linea separatoria -->
+			<!--
+			<br/>
+			
+			<label id="txtParametres"><strong>Modificar paràmetres</strong></label>
+			<br/>
+			<br/>
+			-->
+			<table>
+				<tbody>
+					<% for(i=0; i<output.length; i++) { %>
+						<tr>
+							<td><strong><%= output[i][0] %> : </strong></td>
+							<td><textarea rows="1" cols="0" id=i><%= output[i][1] %></textarea></td>
+						</tr>			
+					<% } %>
+					<tr colspan="2">
+						<td align="right"><button id="btnDesar" class="botoRnd btn75x30" type="button" onclick="app.parametres();">Desar</button></td>
+					</tr>							
+				</tbody>
+			</table>	
 
+			<br/>
+			
 
 		</script>
 		
