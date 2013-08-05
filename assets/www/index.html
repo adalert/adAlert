@@ -28,8 +28,8 @@
     	
     	<section id="app" class="mainSection">
     		<div id="botonera" class="mainDiv">
-    			<br/>
-    			<center>
+    		<br/>
+    		<center>
     			<table border="0" cellspacing="2" cellpadding="2">
     				<tr>
     					<td colspan="2">
@@ -45,14 +45,14 @@
     					</td>
     				</tr>
    				</table>
-	   			</center>
-	   			
-	   			
+   			</center>
+   			
    			</div>
     		
             <div id="infoTelefon" class="mainDiv"></div>
 	    	<div id="parametres" class="mainDiv"></div>
 	    	<div id="alarmes" class="mainDiv"></div>
+	    	<div id="enviamentAlarmes" class="mainDiv"></div>
     	</section>
     
 		<footer>
@@ -64,20 +64,39 @@
             app.initialize();
         </script>
         
-        <!-- Enviament d'alarmes -->
+        <!-- Menu alarmes -->
         <script type="text/template" id="alarmes_template">
-           	<p class="titolSeccio"><label id="txtTitolDreta">Enviament d'alarma</label>
+           	<p class="titolSeccio"><label id="txtTitolDreta">Menu d'alarmes</label>
 				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
 			</p>
 
 			<br/>
 
 			<center>
-				<button id="btnSanitaria" class="botoRnd btn200x75" type="button" onclick="app.sanitaria();">Nova alarma Sanitària</button>
+				<button id="btnSanitaria" class="botoRnd btn250x75" type="button" onclick="app.enviamentAlarmes();">Nova alarma Sanitària</button>
 				<br/>
 				<br/>
-				<button id="btnAgressio" class="botoRnd btn200x75" type="button" onclick="app.agressio();">Nova alarma d'Agressió</button>    		
+				<button id="btnAgressio" class="botoRnd btn250x75" type="button" onclick="app.enviamentAlarmes();">Nova alarma d'Agressió</button>    		
 			</center>
+		
+		</script>
+		
+		 <!-- Enviament d'alarmes -->
+        <script type="text/template" id="enviamentAlarmes_template">
+           	<p class="titolSeccio"><label id="txtTitolDreta">Enviament d'alarma</label>
+				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.alarmes();">&lt;&lt;</button>
+			</p>
+
+			<br/>
+			<strong> Missatge: 
+			<br/>
+			<textarea cols="30" id=txtMissatge wrap="hard"></textarea>			
+
+			<br/>
+			<br/>
+			<br/>
+			<button id="btnEnviar" class="botoRnd btn200x75" type="button" onclick="app.agressio();">Enviar</button>    		
+			
 		
 		</script>
         
@@ -88,26 +107,21 @@
 			</p>
 
 			<br/>
-    		<!-- <table>
-				<tbody>
-					<% for(i=0; i<output.length; i++) { %>
-						<tr>
-							<td><strong><%= output[i][0] %> : </strong></td>
-							<td> <%= output[i][1] %></td>
-						</tr>			
-					<% } %>
-				</tbody>
-			</table>	-->			
+
+    		<!-- 
+				<table>
+					<tbody>
+						<% for(i=0; i<output.length; i++) { %>
+							<tr>
+								<td><strong><%= output[i][0] %> : </strong></td>
+								<td> <%= output[i][1] %></td>
+							</tr>			
+						<% } %>
+					</tbody>
+				</table>	
+			-->			
 			
-			<!-- Aqui pondremos una linea separatoria -->
-			<!--
-			<br/>
-			
-			<label id="txtParametres"><strong>Modificar paràmetres</strong></label>
-			<br/>
-			<br/>
-			-->
-			<table>
+			<table width="100%">
 				<tbody>
 					<% for(i=0; i<output.length; i++) { %>
 						<tr>
@@ -115,8 +129,12 @@
 							<td><textarea rows="1" cols="0" id=i><%= output[i][1] %></textarea></td>
 						</tr>			
 					<% } %>
-					<tr colspan="2">
-						<td align="right"><button id="btnDesar" class="botoRnd btn75x30" type="button" onclick="app.parametres();">Desar</button></td>
+					<tr>
+						<td>
+						</td>
+						<td align="right">
+							<button id="btnDesar" class="botoRnd btn75x30" type="button" onclick="app.parametres();">Desar</button>
+						</td>
 					</tr>							
 				</tbody>
 			</table>	

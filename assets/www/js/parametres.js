@@ -40,5 +40,14 @@ function addParametre(pKey, pValue) {
 function removeParametre(pKey) {
 	db.transaction(function(tx) {
 		tx.executeSql("DELETE FROM parametres WHERE key = ?", [pKey], listParametres);
-	})
+	});
+}
+
+function modifParametre(pKey, pValue) {
+	db.transaction(function(tx) {
+		tx.executeSql("UPDATE FROM parametres SET value = ? WHERE key = ?", [pValue, pKey]);
+	});
+	
+	listParametres();
+	
 }

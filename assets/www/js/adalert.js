@@ -8,6 +8,7 @@ var WIN_MENU = "botonera";
 var WIN_INFO_TELEFON = "infoTelefon"
 var WIN_PARAMETRES = "parametres"
 var WIN_ALARMES = "alarmes"
+var WIN_ENVIAMENTALARMES = "enviamentAlarmes"
 
 var app = (function() {
     var phoneType = "";
@@ -67,12 +68,12 @@ var app = (function() {
 			window.plugins.phoneinfoplugin.onError = function(data) { };
 	    },
 	    	    
-	    // Manú prinicpal
+	    // Menú prinicpal
 	    menu: function() {
 	    	app.activa(WIN_MENU);
 	    },
 	    
-	 // Menú alarmes
+	    // Menú alarmes
 	    alarmes: function() {
 	    	carregaMenu();
 	    	
@@ -86,6 +87,12 @@ var app = (function() {
 	    	app.activa(WIN_PARAMETRES);
 	    },
 	    
+	    // enviament alarmes
+	    enviamentAlarmes: function() {
+	    	carregaTextEnviament();
+	    	
+	    	app.activa(WIN_ENVIAMENTALARMES);
+	    },
 	    
 	    // Informació telèfon
 	    infoTelefon: function() {
@@ -122,6 +129,7 @@ var app = (function() {
 	    	$("#infoTelefon").hide();
 	    	$("#parametres").hide();
 	    	$("#alarmes").hide();
+	    	$("#enviamentAlarmes").hide();
 	    	
 	    	$("#" + obj).show();
 	    }
