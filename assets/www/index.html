@@ -64,33 +64,27 @@
             app.initialize();
         </script>
         
-        <!-- Menu alarmes -->
+	
+        <!-- Enviament d'alarmes -->
         <script type="text/template" id="alarmes_template">
-           	<p class="titolSeccio"><label id="txtTitolDreta">Menu d'alarmes</label>
+           	<p class="titolSeccio"><label id="txtTitolDreta">Enviament d'alarma</label>
 				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
 			</p>
-
+			
 			<br/>
-
-			<center>
-				<button id="btnSanitaria" class="botoRnd btn250x75" type="button" onclick="app.enviamentAlarmes();">Nova alarma Sanitària</button>
-				<br/>
-				<br/>
-				<button id="btnAgressio" class="botoRnd btn250x75" type="button" onclick="app.enviamentAlarmes();">Nova alarma d'Agressió</button>    		
-			</center>
-		
-		</script>
-		
-		 <!-- Enviament d'alarmes -->
-        <script type="text/template" id="enviamentAlarmes_template">
-           	<p class="titolSeccio"><label id="txtTitolDreta">Enviament d'alarma</label>
-				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.alarmes();">&lt;&lt;</button>
-			</p>
-
+			<strong> Seleccionar tipus d'alarma:  
+			<br/>
+			
+			<select>
+				<% for(i=0; i<output.length; i++) { %>
+					<option value = <%= output[i][0] %> selected><%= output[i][1] %></option>
+				<% } %>
+			</select>
+			<br/>
 			<br/>
 			<strong> Missatge: 
 			<br/>
-			<textarea cols="30" id=txtMissatge wrap="hard"></textarea>			
+			<textarea rows="10" cols="30" id=txtMissatge wrap="hard"></textarea>			
 
 			<br/>
 			<br/>

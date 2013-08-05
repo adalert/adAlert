@@ -8,7 +8,6 @@ var WIN_MENU = "botonera";
 var WIN_INFO_TELEFON = "infoTelefon"
 var WIN_PARAMETRES = "parametres"
 var WIN_ALARMES = "alarmes"
-var WIN_ENVIAMENTALARMES = "enviamentAlarmes"
 
 var app = (function() {
     var phoneType = "";
@@ -42,6 +41,7 @@ var app = (function() {
 	    // function, we must explicity call 'app.receivedEvent(...);'
 	    onDeviceReady: function() {	
 	    	initBDParametres();
+	    	initBDAlarmesTipus();
 	    	
 	    	app.activa("botonera");
 	    	
@@ -87,13 +87,6 @@ var app = (function() {
 	    	app.activa(WIN_PARAMETRES);
 	    },
 	    
-	    // enviament alarmes
-	    enviamentAlarmes: function() {
-	    	carregaTextEnviament();
-	    	
-	    	app.activa(WIN_ENVIAMENTALARMES);
-	    },
-	    
 	    // Informació telèfon
 	    infoTelefon: function() {
 	    	var div_res;
@@ -129,8 +122,7 @@ var app = (function() {
 	    	$("#infoTelefon").hide();
 	    	$("#parametres").hide();
 	    	$("#alarmes").hide();
-	    	$("#enviamentAlarmes").hide();
-	    	
+	    		    	
 	    	$("#" + obj).show();
 	    }
 	    
