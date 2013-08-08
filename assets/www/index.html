@@ -49,6 +49,11 @@
     						</button>
     					</td>
     				</tr>
+    				<tr>
+    					<td>
+    						<button id="btnWS" class="botoRnd btn100x100" type="button" onclick="app.ws();">Connexió WS</button>
+    					</td>
+    				</tr>
    				</table>
    			</center>
    			
@@ -57,6 +62,7 @@
             <div id="infoTelefon" class="mainDiv"></div>
 	    	<div id="parametres" class="mainDiv"></div>
 	    	<div id="alarmes" class="mainDiv"></div>
+	    	<div id="ws" class="mainDiv"></div>
     	</section>
     
 		<footer>
@@ -68,6 +74,28 @@
             app.initialize();
         </script>
         
+		<!-- Connexió WS -->
+		<script type="text/template" id="ws_template">
+           	<p class="titolSeccio"><label id="txtTitolDreta">Recepció WS</label>
+				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
+			</p>
+			
+			<br/>
+
+			  <table border="1">
+					<tbody>
+						<% for(i=0; i<$(data).find('Type').length; i++) { %>
+							<tr>
+								<td><strong><%= $(data).find('ID').item(i).text() %></strong></td>
+								<td> <%= $(data).find('NOM').item(i).text() %></td>
+							</tr>			
+						<% } %>
+					</tbody>
+				</table>	
+			<br/>
+			
+		</script>
+	
 	
         <!-- Enviament d'alarmes -->
         <script type="text/template" id="alarmes_template">

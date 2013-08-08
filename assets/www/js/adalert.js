@@ -8,6 +8,7 @@ var WIN_MENU = "botonera";
 var WIN_INFO_TELEFON = "infoTelefon"
 var WIN_PARAMETRES = "parametres"
 var WIN_ALARMES = "alarmes"
+var WIN_WS ="ws"
 
 var app = (function() {
     var phoneType = "";
@@ -87,6 +88,12 @@ var app = (function() {
 	    	app.activa(WIN_PARAMETRES);
 	    },
 	    
+	    ws: function() {
+	    	connexWS();
+	    	
+	    	app.activa(WIN_WS);
+	    },
+	    
 	    // Informació telèfon
 	    infoTelefon: function() {
 	    	var div_res;
@@ -122,6 +129,7 @@ var app = (function() {
 	    	$("#infoTelefon").hide();
 	    	$("#parametres").hide();
 	    	$("#alarmes").hide();
+	    	$("#ws").hide();
 	    		    	
 	    	$("#" + obj).show();
 	    }
