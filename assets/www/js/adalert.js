@@ -105,9 +105,7 @@ var app = (function() {
 	    	$('textarea[id^="t"]').each(function() {
 	    		console.log($(this).attr("id").substring(1));
 	    		console.log($(this).val());
-	    		removeParametre($(this).attr("id").substring(1));
-	    		addParametre($(this).attr("id").substring(1), $(this).val());
-	    		//modifParametre($(this).attr("id").substring(1), $(this).val());
+	    		modifParametre($(this).attr("id").substring(1), $(this).val());
 	    	});
 
 	    	app.activa(WIN_PARAMETRES);
