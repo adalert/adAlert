@@ -11,13 +11,10 @@ function initBDAlarmes() {
 			tx.executeSql("INSERT INTO parametres(key, value) VALUES('password','Barcel0na')");
 		});
 		db.transaction( function(tx) {
-			tx.executeSql("CREATE TABLE IF NOT EXISTS alarmesTipus(key text primary key, value text)");
-			tx.executeSql("INSERT INTO alarmesTipus(key, value) VALUES('88','Sanitària')");
-			tx.executeSql("INSERT INTO alarmesTipus(key, value) VALUES('89','Agressió')");
+			tx.executeSql("CREATE TABLE IF NOT EXISTS alarmesTipus(ID text primary key, NOM text)");
 		});
 	}
 }
-
   
 function listParametres() {
 	 db.transaction( function(tx) {
@@ -41,8 +38,8 @@ function listAlarmesTipus() {
 		 tx.executeSql("SELECT * FROM alarmesTipus", [],
             function(tx, result){
                 for(var i=0; i < result.rows.length; i++) {
-               	 output.push([result.rows.item(i)['key'],
-                            result.rows.item(i)['value']]);
+               	 output.push([result.rows.item(i)['ID'],
+                            result.rows.item(i)['NOM']]);
                 }
                 var div_res = _.template($("#alarmes_template").html());
                 $("#alarmes").html(div_res({output: output}));
@@ -72,4 +69,10 @@ function modifParametre(pKey, pValue) {
 	
 	listParametres();
 	
+}
+
+function addAlarmesTipus(pKey, pValue) {
+	db.transaction( function(tx) {
+		tx.executeSql("INSERT INTO alarmesTipus(ID, NOM) VALUES(?,?)", [pKey, pValue]);
+	});
 }

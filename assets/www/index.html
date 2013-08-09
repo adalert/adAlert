@@ -49,11 +49,11 @@
     						</button>
     					</td>
     				</tr>
-    				<tr>
+    				<!-- <tr>
     					<td>
     						<button id="btnWS" class="botoRnd btn100x100" type="button" onclick="app.ws();">Connexió WS</button>
     					</td>
-    				</tr>
+    				</tr> -->
    				</table>
    			</center>
    			
@@ -81,13 +81,14 @@
 			</p>
 			
 			<br/>
-
-			  <table border="1">
+			<label id="1">LLista de tipus d'alarmes</label>
+			<br/>
+			  <table>
 					<tbody>
-						<% for(i=0; i<$(data).find('Type').length; i++) { %>
+						<% for(i=0; i<output.length; i++) { %>
 							<tr>
-								<td><strong><%= $(data).find('ID').item(i).text() %></strong></td>
-								<td> <%= $(data).find('NOM').item(i).text() %></td>
+								<td><strong><%= output[i][0] %>: </strong></td>
+								<td> <%= output[i][1] %></td>
 							</tr>			
 						<% } %>
 					</tbody>
@@ -121,7 +122,7 @@
 			<br/>
 			<br/>
 			<br/>
-			<button id="btnEnviar" class="botoRnd btn200x75" type="button" onclick="app.agressio();">Enviar</button>    		
+			<button id="btnEnviar" class="botoRnd btn200x75" type="button" onclick="app.enviamentAlarma();">Enviar</button>    		
 			
 		
 		</script>
@@ -133,40 +134,25 @@
 			</p>
 
 			<br/>
-
-    		<!-- 
-				<table>
-					<tbody>
-						<% for(i=0; i<output.length; i++) { %>
-							<tr>
-								<td><strong><%= output[i][0] %> : </strong></td>
-								<td> <%= output[i][1] %></td>
-							</tr>			
-						<% } %>
-					</tbody>
-				</table>	
-			-->			
-			
 			<table width="100%">
 				<tbody>
 					<% for(i=0; i<output.length; i++) { %>
 						<tr>
-							<td><strong><%= output[i][0] %> : </strong></td>
-							<td><textarea rows="1" cols="0" id=i><%= output[i][1] %></textarea></td>
+							<td><strong><label id="lKey"><%= output[i][0] %> : </label></strong></td>
+							<td><textarea rows="2" cols="0" id="t<%= output[i][0] %>"><%= output[i][1] %></textarea></td>
 						</tr>			
 					<% } %>
 					<tr>
 						<td>
 						</td>
 						<td align="right">
-							<button id="btnDesar" class="botoRnd btn75x30" type="button" onclick="app.parametres();">Desar</button>
+							<button id="btnDesar" class="botoRnd btn75x30" type="button" onclick="app.modifParametres();">Desar</button>
 						</td>
 					</tr>							
 				</tbody>
 			</table>	
 
 			<br/>
-			
 
 		</script>
 		

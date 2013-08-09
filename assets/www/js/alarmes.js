@@ -1,22 +1,7 @@
 var db;
  
-function carregaMenu() {
-	db.transaction( function(tx) {
-		 var output = [];
-		 tx.executeSql("SELECT * FROM alarmesTipus", [],
-           function(tx, result){
-               for(var i=0; i < result.rows.length; i++) {
-              	 output.push([result.rows.item(i)['key'],
-                           result.rows.item(i)['value']]);
-               }
-               var div_res = _.template($("#alarmes_template").html());
-               $("#alarmes").html(div_res({output: output}));
-           }
-		 );
-   });
-}
-
-function connexWS(){
+function connexWS() {
+	//Connectem al WS per baixar tipus d'alarmes
 	
 	$.ajax({
         url: 'http://192.168.1.71/adAlert_WS/adAlert_WS.asmx/GetTypeAlarms',
@@ -31,26 +16,26 @@ function connexWS(){
 
 function OnSuccess(data, status)
 {
-    alert('Status: ' + status);
+    var output = [];
     
-    DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-    DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-    Document doc = docBuilder.parse($(data));
-    
-    NodeList listaPersonas = doc.getElementsByTagName("type");
-    int totalPersonas = listaPersonas.getLength();
-    
-    alert('total: ' + totalPersonas);
-    
-    var div_res = _.template($("#ws_template").html());
-    $("#ws").html(div_res({data: data}));
+    $(data).find('Type').each(function( index ) {
+    	addAlarmesTipus($(this).find('ID').text(), $(this).find('NOM').text()); 	
+    	
+    	//output.push([$(this).find('ID').text(),$(this).find('NOM').text()]);
+    	//var div_res = _.template($("#ws_template").html());
+        //$("#ws").html(div_res({output: output}));
+    });
 }
 
 function OnError(request, status, error)
 {
     alert('error');
 }  
+
+function enviar(){
 	
+	alert('Missatge enviat correctament')
+}
 
  
 

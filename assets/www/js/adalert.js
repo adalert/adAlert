@@ -42,6 +42,7 @@ var app = (function() {
 	    // function, we must explicity call 'app.receivedEvent(...);'
 	    onDeviceReady: function() {	
 	    	initBDAlarmes();
+	    	connexWS();
 	    	
 	    	app.activa("botonera");
 	    	
@@ -75,7 +76,6 @@ var app = (function() {
 	    
 	    // Menú alarmes
 	    alarmes: function() {
-	    	carregaMenu();
 	    	listAlarmesTipus();
 	    	
 	    	app.activa(WIN_ALARMES);
@@ -92,6 +92,25 @@ var app = (function() {
 	    	connexWS();
 	    	
 	    	app.activa(WIN_WS);
+	    },
+	    
+	    enviamentAlarma: function() {
+	    	enviar();
+	    		    	
+	    	app.activa(WIN_MENU);
+	    },
+	    
+	    modifParametres: function(){
+	    	
+	    	$('textarea[id^="t"]').each(function() {
+	    		console.log($(this).attr("id").substring(1));
+	    		console.log($(this).val());
+	    		removeParametre($(this).attr("id").substring(1));
+	    		addParametre($(this).attr("id").substring(1), $(this).val());
+	    		//modifParametre($(this).attr("id").substring(1), $(this).val());
+	    	});
+
+	    	app.activa(WIN_PARAMETRES);
 	    },
 	    
 	    // Informació telèfon
@@ -133,7 +152,5 @@ var app = (function() {
 	    		    	
 	    	$("#" + obj).show();
 	    }
-	    
-	    
-	}    
+  	}    
 }());
