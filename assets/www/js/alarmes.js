@@ -37,7 +37,26 @@ function OnError(request, status, error)
 	alert('Error intentant connectar amb el WebService');
 }  
 
-function enviar(){
+function enviar(pIdDispositiu,pTypeAlarm,pMissatge){
+	var sURL;
+	db.transaction( function(tx) {
+		 tx.executeSql("SELECT * FROM parametres WHERE key='adreca'", [],
+             function(tx, result){
+			 	alert(result.rows.item(0)['value']);
+			 	sURL = result.rows.item(0)['value'] + "/SendAlarm";
+			 	alert(sURL);
+			 	$.ajax({
+					url: sURL,
+			        type: "POST",
+			        dataType: "xml",
+			        data: "",
+			        contentType: "text/xml; charset=\"utf-8\"",
+			        success: OnSuccess,
+			        error: OnError
+			    });
+             }
+		 );
+     });
 	
 	alert('Missatge enviat correctament!')
 }
