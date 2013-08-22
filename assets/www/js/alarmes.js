@@ -37,7 +37,7 @@ function OnError(request, status, error)
 	alert('Error intentant connectar amb el WebService');
 }  
 
-function enviar(pIdDispositiu,pTypeAlarm,pMissatge){
+function enviar(pDispositiu,pTipus,pMsg){
 	var sURL;
 	db.transaction( function(tx) {
 		 tx.executeSql("SELECT * FROM parametres WHERE key='adreca'", [],
@@ -48,17 +48,26 @@ function enviar(pIdDispositiu,pTypeAlarm,pMissatge){
 			 	$.ajax({
 					url: sURL,
 			        type: "POST",
-			        dataType: "xml",
-			        data: "",
+			        dataType: "html",
+			        data: {pIdDispositiu : pDispositiu, pTypeAlarm : pTipus, pMissatge : pMsg},
 			        contentType: "text/xml; charset=\"utf-8\"",
-			        success: OnSuccess,
-			        error: OnError
+			        success: GravacioOnSuccess,
+			        error: GravacioOnError
 			    });
              }
 		 );
      });
-	
+
+}
+
+function GravacioOnSuccess(data, status)
+{
 	alert('Missatge enviat correctament!')
+}
+
+function GravacioOnError(request, status, error)
+{
+	alert('Error intentant connectar amb el WebService');
 }
 
  

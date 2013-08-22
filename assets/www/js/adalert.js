@@ -121,7 +121,7 @@ var app = (function() {
 	    	
 	    	console.log(deviceId);
 	    	
-	    	enviar(devideId,option,missatge);
+	    	enviar(deviceId,option,missatge);
 	    	
 	    	app.activa(WIN_MENU);
 	    },
