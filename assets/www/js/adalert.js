@@ -95,7 +95,7 @@ var app = (function() {
 	    },
 	    
 	    enviamentAlarma: function() {
-	    	//enviar();
+	    	
 	    	window.plugins.phoneinfoplugin.getPhoneInfo();
 			window.plugins.phoneinfoplugin.getSIMInfo();
 			window.plugins.phoneinfoplugin.getNetworkInfo();
@@ -105,9 +105,12 @@ var app = (function() {
 			
 	    	$('option[id^="t"]').each(function() {
 	    		console.log($(this).attr("id").substring(1));
-	    		console.log("Opcio: " $(this).val());
-	    		console.log("Seleccionat: " $(this).selected());
-	    		option = ($(this).val());
+	    		console.log($(this).val());
+	    		console.log($(this).attr("selected"));
+	    		if ($(this).attr("selected")){
+	    			console.log($(this).val());
+	    			option = ($(this).val());
+	    		}
 	    	});	
 	    	
 	    	$('textarea[id^="t"]').each(function() {
@@ -116,6 +119,9 @@ var app = (function() {
 	    		missatge = ($(this).val());
 	    	});
 	    	
+	    	console.log(deviceId);
+	    	
+	    	//enviar(devideId,option,missatge);
 	    	app.activa(WIN_MENU);
 	    },
 	    
