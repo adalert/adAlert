@@ -40,14 +40,17 @@ function OnError(request, status, error)
 function enviar(pidDispositiu,pTipus,pMsg){
 	var sURL;
 	db.transaction( function(tx) {
-		 tx.executeSql("SELECT * FROM parametres WHERE key='adreca'", [],
+		 //tx.executeSql("SELECT * FROM parametres WHERE key='adreca'", [],
+		tx.executeSql("SELECT * FROM parametres", [],
              function(tx, result){
+				//result.rows.item(0)['value']);ruta
+				//result.rows.item(1)['value']);usu
+				//result.rows.item(2)['value']);psw
 			 	sURL = result.rows.item(0)['value'] + "/SendAlarm";
-			 	//alert(sURL);
 			 	$.ajax({
 					url: sURL,
 			        type: "POST",
-			        data: {pDispositiu : pidDispositiu, pTypeAlarm : pTipus, pMissatge : pMsg},
+			        data: {pDispositiu : pidDispositiu, pTypeAlarm : pTipus, pMissatge : pMsg, pUsu : result.rows.item(1)['value'], pPass : result.rows.item(2)['value']},
 			        success: EnviamentOnSuccess,
 			        error: EnviamentOnError
 			    });

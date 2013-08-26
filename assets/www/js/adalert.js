@@ -96,7 +96,7 @@ var app = (function() {
 	    
 	    enviamentAlarma: function() {
 	    	
-	    	alert('Enviant missatge.');
+	    	alert('Enviant missatge...');
 	    	
 	    	window.plugins.phoneinfoplugin.getPhoneInfo();
 			window.plugins.phoneinfoplugin.getSIMInfo();
