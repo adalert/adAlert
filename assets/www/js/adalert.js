@@ -147,14 +147,8 @@ var app = (function() {
 	    
 	    compruebaAlarmas: function(){
 	    	alert('Comprobando alarmas...');
-	    	
-	    	window.plugins.phoneinfoplugin.getPhoneInfo();
-	    	
-	    	RecibeAlarmas(deviceId);
-	    	
-	    	
-	    		    
-
+    	
+	    	RecibeAlarmas();
 	    	
 	    	app.activa(WIN_MENU);
 	    },
