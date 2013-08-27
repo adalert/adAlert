@@ -150,6 +150,8 @@ var app = (function() {
     	
 	    	RecibeAlarmas();
 	    	
+	    	//window.plugins.statusBarNotification.notify("Titol2", "Missatge2");
+	    	
 	    	app.activa(WIN_MENU);
 	    },
 	    

@@ -96,15 +96,21 @@ function RecibeAlarmas(){
 
 function RecibeOnSuccess(data, status)
 {
-	alert('Nous missatges disponibles!');
-	$(data).find('Alarm').each(function( index ) {
-		window.plugins.StatusBarNotification.notify("Put your title here", "Put your message here");
-		//navigator.notification.alert(
-		//		$(this).find('Missatge').text(),     // mensaje (message)
-		//		'Tancar',							 // titulo (title)
-		//		'Alarma '+$(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
-		//	    );
-    });
+	//alert('Nous missatges disponibles!');
+
+	window.plugins.statusBarNotification.notify("Nous missatges rebuts", {
+		   body: $(data).find('Alarm').length + ' alarma/es nova/es',
+		   tag: 'download',
+		   onclick: function() {
+				$(data).find('Alarm').each(function( index ) {
+					navigator.notification.alert(
+							$(this).find('Missatge').text(),     // mensaje (message)
+							'Tancar',							 // titulo (title)
+							'Alarma '+$(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
+						    );
+				});
+		   }
+		});
 }
 
 function RecibeOnError(request, status, error)

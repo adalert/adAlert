@@ -1,29 +1,3 @@
-/*
-*
-* Copyright (C) 2011 Dmitry Savchenko <dg.freak@gmail.com>
-*
-* Permission is hereby granted, free of charge, to any person
-* obtaining a copy of this software and associated documentation
-* files (the "Software"), to deal in the Software without
-* restriction, including without limitation the rights to use,
-* copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the
-* Software is furnished to do so, subject to the following
-* conditions:
-*
-* The above copyright notice and this permission notice shall be
-* included in all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-* OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-* NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-* HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-* WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-* OTHER DEALINGS IN THE SOFTWARE.
-*
-*/
 
 var cordovaRef = window.PhoneGap || window.Cordova || window.cordova; // old to new fallbacks
 
@@ -44,12 +18,17 @@ var NotificationMessenger = function() { }
 * @param body Body of the notification
 * @deprecated Use the W3C standard window.Notification API instead.
 */
-NotificationMessenger.prototype.notify = function(title, body, flag) {
+//NotificationMessenger.prototype.notify = function(title, body, flag) {
+//    if (window.Notification) {
+//        this.activeNotification = new window.Notification(title, {
+//           body: body,
+//            flag: flag
+//        });
+//    }
+//}
+NotificationMessenger.prototype.notify = function(title, options) {
     if (window.Notification) {
-        this.activeNotification = new window.Notification(title, {
-            body: body,
-            flag: flag
-        });
+        this.activeNotification = new window.Notification(title, options);
     }
 }
 
@@ -117,6 +96,7 @@ if (typeof window.Notification == 'undefined') {
     // Not part of the W3C API. Used by the native side to call onclick handlers.
     window.Notification.callOnclickByTag = function(tag) {
         console.log('callOnclickByTag');
+        console.log(tag);
         var notification = window.Notification.active[tag];
         if (notification && notification.onclick && typeof notification.onclick == 'function') {
             console.log('inside if');
