@@ -6,9 +6,9 @@ function connexWS() {
 	db.transaction( function(tx) {
 		 tx.executeSql("SELECT * FROM parametres WHERE key='adreca'", [],
              function(tx, result){
-			 	alert(result.rows.item(0)['value']);
+			 	//alert(result.rows.item(0)['value']);
 			 	sURL = result.rows.item(0)['value'] + "/GetTypeAlarms";
-			 	alert(sURL);
+			 	//alert(sURL);
 			 	$.ajax({
 					url: sURL,
 			        type: "POST",
@@ -71,5 +71,51 @@ function EnviamentOnError(request, status, error)
 	alert(error);
 }
 
+function RecibeAlarmas(pidDispositiu){
+	//Connectem al WS per baixar alarmes
+		var sURL;
+		db.transaction( function(tx) {
+			 tx.executeSql("SELECT * FROM parametres WHERE key='adreca'", [],
+	             function(tx, result){
+				 	sURL = result.rows.item(0)['value'] + "/GetAlarms";
+				 	$.ajax({
+						url: sURL,
+				        type: "POST",
+				        dataType: "xml",
+				        data: "",
+				        contentType: "text/xml; charset=\"utf-8\"",
+				        success: RecibeOnSuccess,
+				        error: RecibeOnError
+				    });
+	             }
+			 );
+	     });
+}
+
+function RecibeOnSuccess(data, status)
+{
+	alert('Nous missatges disponibles!');
+	$(data).find('Alarm').each(function( index ) {
+    	//addAlarmesTipus($(this).find('ID').text(), $(this).find('NOM').text()); 	
+		alert($(this).find('TipusAlarma').text());
+		alert($(this).find('Missatge').text());
+		//navigator.notification.alert(
+		//		$(this).find('Missatge').text(),     // mensaje (message)
+		//	    'Nova Alarma '+$(this).find('TipusAlarma').text(),          // titulo (title)
+		//	    'Tancar'                // nombre del botón (buttonName)
+		//	    );
+		// navigator.notification.beep(3);
+		// navigator.notification.vibrate(2000);
+    });
+			    
+
+}
+
+function RecibeOnError(request, status, error)
+{
+	alert('Error intentant connectar amb el WebService');
+	alert(error);
+	alert(request);
+}
  
 

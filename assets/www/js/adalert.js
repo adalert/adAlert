@@ -1,7 +1,7 @@
 /**
  * adAlert.js
  * Llibreria de funcions de adAlert
- * (c) 2013, moga 
+ * (c) 2013 
 **/
 
 var WIN_MENU = "botonera";
@@ -135,8 +135,28 @@ var app = (function() {
 	    		console.log($(this).val());
 	    		modifParametre($(this).attr("id").substring(1), $(this).val());
 	    	});
+	    	
+	    	$('input[id^="t"]').each(function() {
+	    		console.log($(this).attr("id").substring(1));
+	    		console.log($(this).val());
+	    		modifParametre($(this).attr("id").substring(1), $(this).val());
+	    	});
 
 	    	app.activa(WIN_PARAMETRES);
+	    },
+	    
+	    compruebaAlarmas: function(){
+	    	alert('Comprobando alarmas...');
+	    	
+	    	window.plugins.phoneinfoplugin.getPhoneInfo();
+	    	
+	    	RecibeAlarmas(deviceId);
+	    	
+	    	
+	    		    
+
+	    	
+	    	app.activa(WIN_MENU);
 	    },
 	    
 	    // Informació telèfon
