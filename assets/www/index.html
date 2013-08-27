@@ -38,12 +38,12 @@
     					</td>
     				</tr>
    					<tr valign="bottom">
-   						<td align="left">
+   						<!-- <td align="left">
     						<button id="btnInfoPhone" class="botoRnd btn100x100" type="button" onclick="app.infoTelefon();">
     							<img src="img/info1.png" width="20" align="middle"/>
     						</button>
     						
-    					</td>
+    					</td>-->
     					<td align="right">
     						<button id="btnParametres" class="botoRnd btn100x100" type="button" onclick="app.parametres();">
     						<img src="img/parametres1.png" width="60" align="middle"/>
@@ -152,7 +152,23 @@
 					<% } %>
 					<tr>
 						<td>
+							<strong>Comprovar cada:
 						</td>
+						<td>
+							<select>
+								<% for(i=1; i<=60; i++) { %>
+								<option width=10 value = <%= i %> id="t<%= i %>" selected><%= i %></option>
+								<% } %>
+								minuts
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td align="left">
+    						<button id="btnInfoPhone" class="botoRnd btn100x100" type="button" onclick="app.infoTelefon();">
+    							<img src="img/info1.png" width="20" align="middle"/>
+    						</button>
+    					</td>
 						<td align="right">
 							<button id="btnDesar" class="botoRnd btn75x30" type="button" onclick="app.modifParametres();">Desar</button>
 						</td>
@@ -167,7 +183,7 @@
 		<!-- Informació del dispositiu -->
 		<script type="text/template" id="infoTelefon_template">
            	<p class="titolSeccio"><label id="txtTitolDreta">Informació dispositiu</label>
-				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
+				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.parametres();">&lt;&lt;</button>
 			</p>
 
 			<table border="0" cellspacing="2" cellpadding="2">
