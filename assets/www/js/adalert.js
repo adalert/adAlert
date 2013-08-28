@@ -10,6 +10,9 @@ var WIN_PARAMETRES = "parametres"
 var WIN_ALARMES = "alarmes"
 var WIN_WS ="ws"
 
+
+
+
 var app = (function() {
     var phoneType = "";
     var deviceId = "";
@@ -67,6 +70,8 @@ var app = (function() {
 				}
 			};
 			window.plugins.phoneinfoplugin.onError = function(data) { };
+			
+			window.setInterval(RecibeAlarmas,30000); //30 segons
 	    },
 	    	    
 	    // Menú prinicpal
@@ -149,9 +154,7 @@ var app = (function() {
 	    	alert('Comprobando alarmas...');
     	
 	    	RecibeAlarmas();
-	    	
-	    	//window.plugins.statusBarNotification.notify("Titol2", "Missatge2");
-	    	
+
 	    	app.activa(WIN_MENU);
 	    },
 	    

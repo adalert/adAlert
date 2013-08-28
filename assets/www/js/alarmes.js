@@ -96,10 +96,22 @@ function RecibeAlarmas(){
 
 function RecibeOnSuccess(data, status)
 {
-	//alert('Nous missatges disponibles!');
-
-	window.plugins.statusBarNotification.notify("Nous missatges rebuts", {
-		   body: $(data).find('Alarm').length + ' alarma/es nova/es',
+	var texto;
+	var vacia = false;
+	
+	if($(data).find('Alarm').length>1){
+		texto = $(data).find('Alarm').length + ' missatges nous';
+	}else{
+		texto = $(data).find('Alarm').length + ' missatge nou';
+		if($(data).find('TipusAlarma').text()=='00'){ //Si el tipus de alarma es 00, quiere decir que NO hay mensaje.
+			vacia = true;
+		}
+	}
+		
+	if(vacia==false){
+	
+	window.plugins.statusBarNotification.notify("Noves alarmes rebudes", {
+		   body: texto,
 		   tag: 'download',
 		   onclick: function() {
 				$(data).find('Alarm').each(function( index ) {
@@ -111,6 +123,7 @@ function RecibeOnSuccess(data, status)
 				});
 		   }
 		});
+	}
 }
 
 function RecibeOnError(request, status, error)
@@ -120,4 +133,5 @@ function RecibeOnError(request, status, error)
 	alert(request);
 }
  
+
 
