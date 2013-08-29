@@ -38,7 +38,7 @@ function OnError(request, status, error)
 }  
 
 function obtenirDadesUsuari(pidDispositiu) {
-	//Connectem al WS per baixar tipus d'alarmes
+	//Connectem al WS per baixar l'edifici al qual pertany l'usuari
 	var sURL;
 	db.transaction( function(tx) {
 		 tx.executeSql("SELECT * FROM parametres", [],
@@ -48,8 +48,7 @@ function obtenirDadesUsuari(pidDispositiu) {
 					url: sURL,
 			        type: "POST",
 			        dataType: "xml",
-			        data: {pUser : result.rows.item(1)['value'], pDispositiu : '123456789'},
-			        //contentType: "text/xml; charset=\"utf-8\"",
+			        data: {pUser : result.rows.item(1)['value'], pDispositiu : pidDispositiu},
 			        success: DadesUsuOnSuccess,
 			        error: DadesUsuOnError
 			    });
@@ -61,11 +60,15 @@ function obtenirDadesUsuari(pidDispositiu) {
 function DadesUsuOnSuccess(data, status)
 {
 	var edifici = "";
+	var usuari = ""
+	
+	$("#usuEdificis").html(edifici);
+	$("#usuNom").html(usuari);
+	
 	
 	$("#usuNom").html($(data).find('Usu').text());
 
 	$(data).find('Edifici').each(function( index ) {
-    	alert($(this).find('Nom').text());
 		if(edifici=='')
 			edifici = $(this).find('Nom').text();
 		else
@@ -73,8 +76,6 @@ function DadesUsuOnSuccess(data, status)
     });
 
 	$("#usuEdificis").html(edifici);
-	
-	
 }
 
 function DadesUsuOnError(request, status, error)
@@ -107,7 +108,7 @@ function enviar(pidDispositiu,pTipus,pMsg){
 
 function EnviamentOnSuccess(data, status)
 {
-	alert('Missatge enviat correctament!');
+	//alert('Missatge enviat correctament!');
 }
 
 function EnviamentOnError(request, status, error)
@@ -151,22 +152,35 @@ function RecibeOnSuccess(data, status)
 			vacia = true;
 		}
 	}
-		
-	if(vacia==false){
 	
-	window.plugins.statusBarNotification.notify("Noves alarmes rebudes", {
+	if(vacia==false){
+	navigator.notification.vibrate(2000);
+	window.plugins.statusBarNotification.notify('Noves notificacions rebudes', {
 		   body: texto,
 		   tag: 'download',
 		   onclick: function() {
 				$(data).find('Alarm').each(function( index ) {
-					navigator.notification.alert(
-							$(this).find('Missatge').text(),     // mensaje (message)
+					if($(this).find('IDAprovador').text()=='00'){
+						navigator.notification.alert(
+							$(this).find('Missatge').text()	,     // mensaje (message)
 							'Tancar',							 // titulo (title)
-							'Alarma '+$(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
+							'Alarma ' + $(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
 						    );
+					} else {
+						navigator.notification.alert(
+							$(this).find('text_FalsaAlarma').text()	,     // mensaje (message)
+							'Tancar',							 // titulo (title)
+							'Falsa Alarma ' + $(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
+							);
+					}
+					
 				});
 		   }
 		});
+	
+	navigator.notification.beep(1);
+	
+	
 	}
 }
 

@@ -8,7 +8,7 @@ var WIN_MENU = "botonera";
 var WIN_INFO_TELEFON = "infoTelefon"
 var WIN_PARAMETRES = "parametres"
 var WIN_ALARMES = "alarmes"
-var WIN_WS ="ws"
+var WIN_RECEPCIO ="recepcio"
 
 
 
@@ -74,9 +74,8 @@ var app = (function() {
 			window.setInterval(RecibeAlarmas,30000); //30 segons
 			
 			window.plugins.phoneinfoplugin.getPhoneInfo();
-			alert(deviceId);
-			obtenirDadesUsuari(deviceId);
 			
+			obtenirDadesUsuari(deviceId);
 	    },
 	    	    
 	    // Menú prinicpal
@@ -106,7 +105,7 @@ var app = (function() {
 	    
 	    enviamentAlarma: function() {
 	    	
-	    	alert('Enviant missatge...');
+	    	//alert('Enviant missatge...');
 	    	
 	    	window.plugins.phoneinfoplugin.getPhoneInfo();
 			window.plugins.phoneinfoplugin.getSIMInfo();
@@ -152,15 +151,15 @@ var app = (function() {
 	    		modifParametre($(this).attr("id").substring(1), $(this).val());
 	    	});
 
+	    	window.plugins.phoneinfoplugin.getPhoneInfo();
+	    	obtenirDadesUsuari(deviceId);	
+	    	
 	    	app.activa(WIN_PARAMETRES);
 	    },
 	    
 	    compruebaAlarmas: function(){
-	    	alert('Comprobando alarmas...');
-    	
 	    	RecibeAlarmas();
-
-	    	app.activa(WIN_MENU);
+	    	app.activa(WIN_RECEPCIO);
 	    },
 	    
 	    // Informació telèfon
@@ -198,7 +197,7 @@ var app = (function() {
 	    	$("#infoTelefon").hide();
 	    	$("#parametres").hide();
 	    	$("#alarmes").hide();
-	    	$("#ws").hide();
+	    	$("#recepcio").hide();
 	    		    	
 	    	$("#" + obj).show();
 	    }

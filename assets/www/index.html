@@ -45,9 +45,6 @@
                     <p class="iconLabel">Enviar alarma</p>
                     <!--<p>Envía una alarma al sistema de ....</p>-->
                 </div>
-    						<!--<button id="btnInfoPhone" class="botoRnd btn100x100" type="button" onclick="app.infoTelefon();">-->
-    							<!--<img src="img/info1.png" width="20" align="middle"/>-->
-    						<!--</button>-->
                 <div id="botoneraInferior" class="">
                     <div id="infoUser" class="" style="float: left">
                         <ul>
@@ -74,7 +71,7 @@
             <div id="infoTelefon" class="mainDiv"></div>
 	    	<div id="parametres" class="mainDiv"></div>
 	    	<div id="alarmes" class="mainDiv"></div>
-	    	<div id="ws" class="mainDiv"></div>
+	    	<div id="rebreAlarmes" class="mainDiv"></div>
     	</section>
     
 		<footer>
@@ -86,14 +83,14 @@
             app.initialize();
         </script>
         
-		<!-- Connexió WS -->
-		<script type="text/template" id="ws_template">
-           	<p class="titolSeccio"><label id="txtTitolDreta">Recepció WS</label>
+		<!-- rebreAlarmes -->
+		<script type="text/template" id="rebreAlarmes_template">
+           	<p class="titolSeccio"><label id="txtTitolDreta">Recepció Missatge</label>
 				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
 			</p>
 			
 			<br/>
-			<label id="1">LLista de tipus d'alarmes</label>
+			<label id="1">Dades de la notificació</label>
 			<br/>
 			  <table>
 					<tbody>
@@ -150,7 +147,15 @@
 				<tbody>
 					<% for(i=0; i<output.length; i++) { %>
 						<tr>
-							<td><strong><label id="lKey"><%= output[i][0] %> : </label></strong></td>
+							<td>
+								<strong>
+									<% if(output[i][0] == "adreca") { %>	
+										<label id="lKey">Adreça : </label>
+									<% } else { %>
+										<label id="lKey"><%= output[i][0] %> : </label>
+									<% } %>
+								</strong>
+							</td>
 							<td>
 								<% if(output[i][0] == "Password") { %>
 									<input type="password" id="t<%= output[i][0] %>" value="<%= output[i][1] %>">
