@@ -37,6 +37,52 @@ function OnError(request, status, error)
 	alert('Error intentant connectar amb el WebService');
 }  
 
+function obtenirDadesUsuari(pidDispositiu) {
+	//Connectem al WS per baixar tipus d'alarmes
+	var sURL;
+	db.transaction( function(tx) {
+		 tx.executeSql("SELECT * FROM parametres", [],
+             function(tx, result){
+			 	sURL = result.rows.item(0)['value'] + "/GetUserData";
+			 	$.ajax({
+					url: sURL,
+			        type: "POST",
+			        dataType: "xml",
+			        data: {pUser : result.rows.item(1)['value'], pDispositiu : '123456789'},
+			        //contentType: "text/xml; charset=\"utf-8\"",
+			        success: DadesUsuOnSuccess,
+			        error: DadesUsuOnError
+			    });
+             }
+		 );
+     });
+}
+
+function DadesUsuOnSuccess(data, status)
+{
+	var edifici = "";
+	
+	$("#usuNom").html($(data).find('Usu').text());
+
+	$(data).find('Edifici').each(function( index ) {
+    	alert($(this).find('Nom').text());
+		if(edifici=='')
+			edifici = $(this).find('Nom').text();
+		else
+			edifici = edifici + ', ' + $(this).find('Nom').text();
+    });
+
+	$("#usuEdificis").html(edifici);
+	
+	
+}
+
+function DadesUsuOnError(request, status, error)
+{
+	alert('Error intentant connectar amb el WebService per obtenir Edificis');
+}  
+
+
 function enviar(pidDispositiu,pTipus,pMsg){
 	var sURL;
 	db.transaction( function(tx) {
@@ -57,7 +103,6 @@ function enviar(pidDispositiu,pTipus,pMsg){
              }
 		 );
      });
-
 }
 
 function EnviamentOnSuccess(data, status)
@@ -68,7 +113,6 @@ function EnviamentOnSuccess(data, status)
 function EnviamentOnError(request, status, error)
 {
 	alert('Error intentant connectar amb el WebService per enviar alarmes');
-	alert(error);
 }
 
 function RecibeAlarmas(){
@@ -129,8 +173,6 @@ function RecibeOnSuccess(data, status)
 function RecibeOnError(request, status, error)
 {
 	alert('Error intentant connectar amb el WebService per rebre missatges');
-	alert(error);
-	alert(request);
 }
  
 

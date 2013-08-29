@@ -72,6 +72,11 @@ var app = (function() {
 			window.plugins.phoneinfoplugin.onError = function(data) { };
 			
 			window.setInterval(RecibeAlarmas,30000); //30 segons
+			
+			window.plugins.phoneinfoplugin.getPhoneInfo();
+			alert(deviceId);
+			obtenirDadesUsuari(deviceId);
+			
 	    },
 	    	    
 	    // Menú prinicpal
