@@ -158,7 +158,7 @@ var app = (function() {
 	    },
 	    
 	    compruebaAlarmas: function(obj){
-	    	alert($(obj).find('IDAprovador').text());
+	    	
 	    	if($(obj).find('IDAprovador').text()=='00'){
 	    		var div_res = _.template($("#ws_template").html());
 	    		$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
