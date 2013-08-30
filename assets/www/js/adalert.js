@@ -8,7 +8,7 @@ var WIN_MENU = "botonera";
 var WIN_INFO_TELEFON = "infoTelefon"
 var WIN_PARAMETRES = "parametres"
 var WIN_ALARMES = "alarmes"
-var WIN_RECEPCIO ="recepcio"
+var WIN_WS ="ws"
 
 
 
@@ -157,9 +157,29 @@ var app = (function() {
 	    	app.activa(WIN_PARAMETRES);
 	    },
 	    
-	    compruebaAlarmas: function(){
-	    	RecibeAlarmas();
-	    	app.activa(WIN_RECEPCIO);
+	    compruebaAlarmas: function(obj){
+	    	alert($(obj).find('IDAprovador').text());
+	    	if($(obj).find('IDAprovador').text()=='00'){
+	    		var div_res = _.template($("#ws_template").html());
+	    		$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
+					TipusAlarma: $(obj).find('TipusAlarma').text(),
+					Missatge: $(obj).find('Missatge').text(),
+					Emissor: $(obj).find('Nom').text(),
+					Ubicacio: $(obj).find('UbicacioE').text(),
+					Area: $(obj).find('AreaE').text()} ));
+					//Edifici: $(obj).find('nom_centre').text()} ));
+	    	} else {
+	    		var div_res = _.template($("#ws_template").html());
+	    		$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
+	    			TipusAlarma: $(obj).find('TipusAlarma').text(),
+	    			Missatge: $(obj).find('text_FalsaAlarma').text(),
+	    			Emissor: $(obj).find('NomAprovador').text(),
+	    			Ubicacio: $(obj).find('UbicacioA').text(),
+	    			Area: $(obj).find('AreaA').text()} ));
+	    			//Edifici: $(obj).find('nom_centre').text()} ));
+	    	}
+	    	
+	    	app.activa(WIN_WS);
 	    },
 	    
 	    // Informació telèfon
@@ -197,7 +217,7 @@ var app = (function() {
 	    	$("#infoTelefon").hide();
 	    	$("#parametres").hide();
 	    	$("#alarmes").hide();
-	    	$("#recepcio").hide();
+	    	$("#ws").hide();
 	    		    	
 	    	$("#" + obj).show();
 	    }

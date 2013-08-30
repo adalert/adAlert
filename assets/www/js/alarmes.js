@@ -154,29 +154,40 @@ function RecibeOnSuccess(data, status)
 	}
 	
 	if(vacia==false){
+		
 	navigator.notification.vibrate(2000);
+//	window.plugins.statusBarNotification.notify('Noves notificacions rebudes', {
+//		   body: texto,
+//		   tag: 'download',
+//		   onclick: function() {
+//				$(data).find('Alarm').each(function( index ) {
+//					if($(this).find('IDAprovador').text()=='00'){
+//						navigator.notification.alert(
+//							$(this).find('Missatge').text()	,     // mensaje (message)
+//							'Tancar',							 // titulo (title)
+//							'Alarma ' + $(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
+//						    );
+//					} else {
+//						navigator.notification.alert(
+//							$(this).find('text_FalsaAlarma').text()	,     // mensaje (message)
+//							'Tancar',							 // titulo (title)
+//							'Falsa Alarma ' + $(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
+//							);
+//					}
+//					
+//				});
+//		   }
+//		});
+	
 	window.plugins.statusBarNotification.notify('Noves notificacions rebudes', {
-		   body: texto,
-		   tag: 'download',
-		   onclick: function() {
-				$(data).find('Alarm').each(function( index ) {
-					if($(this).find('IDAprovador').text()=='00'){
-						navigator.notification.alert(
-							$(this).find('Missatge').text()	,     // mensaje (message)
-							'Tancar',							 // titulo (title)
-							'Alarma ' + $(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
-						    );
-					} else {
-						navigator.notification.alert(
-							$(this).find('text_FalsaAlarma').text()	,     // mensaje (message)
-							'Tancar',							 // titulo (title)
-							'Falsa Alarma ' + $(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
-							);
-					}
-					
-				});
-		   }
-		});
+	   body: texto,
+	   tag: 'download',
+	   onclick: function() {
+			$(data).find('Alarm').each(function( index ) {
+				app.compruebaAlarmas(this);
+			});
+	   }
+	});
 	
 	navigator.notification.beep(1);
 	

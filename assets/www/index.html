@@ -4,16 +4,17 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/adalert.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
-        <!--<link rel="stylesheet" type="text/css" href="css/style-tl1.css" />-->
+<!--         <link rel="stylesheet" type="text/css" href="css/style-tl1.css" /> -->
         <title>adAlert mobile [0.0.1]</title>
 
         <script type="text/javascript" src="js/jquery-latest.js"></script>
         <script type="text/javascript" src="js/underscore.js"></script>
-		<script type="text/javascript" src="js/cordova.js"></script>
+ 		<script type="text/javascript" src="js/cordova.js"></script>
 		<script type="text/javascript" src="js/statusbarnotification.js"></script>
 		<script type="text/javascript" src="js/phoneInfoPlugin.js"></script>
 		<script type="text/javascript" src="js/adalert.js"></script>
@@ -25,53 +26,57 @@
     <body>
     	<header>
             <nav class="navbar navbar-default navbar-static-top" >
-                <div class="headerLogo"><img src="img/logo.png" width="70px" /></div>
+                <div class="headerLogo"><img src="img/logo.png" class="img-responsive" width="70px" /></div>
                 <div class="headerTitle">
-                    <p>adAlert mobile</p>
-                    <p>(c) SETTING. v.0.0.1</p>
+                    <p class="headerTxtTitle">adAlert mobile</p>
+                    <p class="headerTxtSubTitle">(c) SETTING. v.0.0.1</p>
                 </div>
             </nav>
     	</header>
     	
-    	<section id="app" class="mainSection">
-    		<div id="botonera" class="mainDiv">
-                <div class="text-center">
-                    <figure>
-                        <a href="#">
-                            <i id="btnEnviament2" class="glyphicon glyphicon-bullhorn icon-rounded icon-alarma" onclick="app.alarmes();"></i>
-                            <!--<img src="img/bell-animation.gif" class="icon-rounded"/>-->
-                        </a>
-                    </figure>
-                    <p class="iconLabel">Enviar alarma</p>
-                    <!--<p>Envía una alarma al sistema de ....</p>-->
-                </div>
-                <div id="botoneraInferior" class="">
-                    <div id="infoUser" class="" style="float: left">
-                        <ul>
-                            <li><span class="titulo">Usuari:</span> <span id="usuNom"></span></li>
-                            <li><span class="titulo">Edificis:</span> <spant id="usuEdificis"></spant></li>
-                        </ul>
-                    </div>
-                    <div class=""  style="float: right">
-                        <figure style="margin-left: 0.3em;">
+    	<section id="app">
+            <div class="mainSection">
+
+                <div id="botonera" class="mainDiv">
+                    <div class="text-center">
+                        <figure>
                             <a href="#">
-                                <i class="glyphicon glyphicon-cog icon-rounded icon-params" onclick="app.parametres();"></i>
+                                <i id="btnEnviament2" class="glyphicon glyphicon-bullhorn icon-rounded icon-alarma"  onclick="app.alarmes();"></i>
+                                <!--<i id="btnEnviament2" class="glyphicon glyphicon-bell icon-rounded icon-alarma" onclick="app.alarmes();"></i>-->
                             </a>
                         </figure>
-                        <p style="font-size: 1em; margin-right: 0.5em;" class="iconLabel">Parametres</p>
+                        <p class="iconLabel">Enviar alarma</p>
+                        <!--<p>Envía una alarma al sistema de ....</p>-->
                     </div>
+                    <div class="botoneraInferior" >
+                        <div id="infoUser" class="" style="float: left">
+                            <ul>
+                                <li><span class="titulo">Usuari:</span> <span id="usuNom"></span></li>
+                            	<li><span class="titulo">Edificis:</span> <span id="usuEdificis"></span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class=""  style="float: right">
+                            <figure style="margin-left: 0.3em;">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-cog icon-rounded icon-params" onclick="app.parametres();"></i>
+                                </a>
+                            </figure>
+                            <p style="font-size: 1em; margin-right: 0.5em;" class="iconLabel">Parametres</p>
+                        </div>
+                    </div>
+                         <!--<tr>-->
+                            <!--<td>-->
+                                <!--<button id="btnWS" class="botoRnd btn100x100" type="button" onclick="app.ws();">Connexió WS</button>-->
+                            <!--</td>-->
+                        <!--</tr> -->
                 </div>
-    				<!-- <tr>
-    					<td>
-    						<button id="btnWS" class="botoRnd btn100x100" type="button" onclick="app.compruebaAlarmas();">Connexió WS</button>
-    					</td>
-    				</tr> --> 
-   			</div>
-    		
-            <div id="infoTelefon" class="mainDiv"></div>
-	    	<div id="parametres" class="mainDiv"></div>
-	    	<div id="alarmes" class="mainDiv"></div>
-	    	<div id="rebreAlarmes" class="mainDiv"></div>
+
+                <div id="infoTelefon" class="mainDiv"></div>
+                <div id="parametres" class="mainDiv"></div>
+                <div id="alarmes" class="mainDiv"></div>
+                <div id="ws" class="mainDiv"></div>
+            </div>
     	</section>
     
 		<footer>
@@ -83,183 +88,264 @@
             app.initialize();
         </script>
         
-		<!-- rebreAlarmes -->
-		<script type="text/template" id="rebreAlarmes_template">
-           	<p class="titolSeccio"><label id="txtTitolDreta">Recepció Missatge</label>
-				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
-			</p>
-			
-			<br/>
-			<label id="1">Dades de la notificació</label>
-			<br/>
-			  <table>
-					<tbody>
-						<% for(i=0; i<output.length; i++) { %>
-							<tr>
-								<td><strong><%= output[i][0] %>: </strong></td>
-								<td> <%= output[i][1] %></td>
-							</tr>			
-						<% } %>
-					</tbody>
-				</table>	
-			<br/>
+		<!-- Connexió WS -->
+		<script type="text/template" id="ws_template">
+           	<div class="divContenido">
+                <div class="titoleccio">
+                    <div style="float: right">
+                        <p class="titolSeccio bold">Dades missatge</p>
+                    </div>
+                </div>
+
+                <table id="dadesAlarmaTable" class="table">
+                    <tr>
+                        <th>Data i Hora</th>
+                        <td><%= dataHora %></td>
+                    </tr>
+                    <tr>
+                        <th>Tip. alarma</th>
+                        <td><%= TipusAlarma %></td>
+                    </tr>
+					<tr>
+                        <th>Missatge</th>
+                        <td><%= Missatge %></td>
+                    </tr>					
+					<tr>
+                        <th>Emissor</th>
+                        <td><%= Emissor %></td>
+                    </tr>
+                    <tr>
+                        <th>Ubicació</th>
+                        <td><%= Ubicacio %></td>
+                    </tr>
+					<tr>
+                        <th>Area</th>
+                        <td><%= Area %></td>
+                    </tr>
+					
+                </table>
+
+                <table class="botoneraInferiorParametres" >
+                    <tr>
+                        <td style="text-align: left;" >
+                            <figure>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-chevron-left icon-rounded icon-params" onclick="app.menu();"></i>
+                                </a>
+                            </figure>
+                            <p style="font-size: 1em; margin-left: 0.8em; text-align: center; text-align: left;" class="iconLabel">Tornar</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 			
 		</script>
 	
 	
         <!-- Enviament d'alarmes -->
         <script type="text/template" id="alarmes_template">
-           	<p class="titolSeccio"><label id="txtTitolDreta">Enviament d'alarma</label>
-				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
-			</p>
-			
-			<br/>
-			<strong> Seleccionar tipus d'alarma:  
-			<br/>
-			
-			<select>
-				<% for(i=0; i<output.length; i++) { %>
-					<option value = <%= output[i][0] %> id="t<%= output[i][0] %>" selected><%= output[i][1] %></option>
-				<% } %>
-			</select>
-			<br/>
-			<br/>
-			<strong> Missatge: 
-			<br/>
-			<textarea rows="10" cols="30" id=txtMissatge wrap="hard"></textarea>			
+            <div class="divContenido">
+                <div class="titoleccio">
+                    <div style="float: right">
+                        <p class="titolSeccio bold">Enviament d'alarma</p>
+                    </div>
+                </div>
 
-			<br/>
-			<br/>
-			<br/>
-			<button id="btnEnviar" class="botoRnd btn200x75" type="button" onclick="app.enviamentAlarma();">Enviar</button>    		
-			
+                <form role="form" style="clear: both;">
+                    <div class="form-group">
+                        <label for="tipusAlarma" class="bold">Seleccionar tipus d'alarma</label>
+                        <select id="tipusAlarma" class="form-control" style="width: 15em;">
+                            <% for(i=0; i<output.length; i++) { %>
+                                <option value = <%= output[i][0] %> id="t<%= output[i][0] %>" selected><%= output[i][1] %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipusAlarma" class="bold">Missatge</label>
+                        <textarea class="form-control" rows="10" cols="30" id=txtMissatge wrap="hard"></textarea>
+                    </div>
+                </form>
+
+                <table class="botoneraInferiorParametres" >
+                    <tr>
+                        <td style="text-align: left;" >
+                            <figure>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-chevron-left icon-rounded icon-params" onclick="app.menu();"></i>
+                                </a>
+                            </figure>
+                            <p style="font-size: 1em; margin-left: 0.8em; text-align: center; text-align: left;" class="iconLabel">Tornar</p>
+                        </td>
+
+                        <td style="text-align: right; padding-left: 1.9em;">
+                            <figure>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-ok icon-rounded icon-desar" onclick="app.enviamentAlarma();"></i>
+                                </a>
+                            </figure>
+                            <p style="font-size: 1em; padding-right: 7pt; text-align: right;" class="iconLabel">Enviar</p>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
 		
 		</script>
         
 		<!-- Gestió de paràmetres -->
 		<script type="text/template" id="parametres_template">
-           	<p class="titolSeccio"><label id="txtTitolDreta">Paràmetres</label>
-				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
-			</p>
+            <div class="divContenido">
+                <div class="titoleccio">
+                    <div style="float: right">
+                        <p class="titolSeccio bold">Paràmetres</p>
+                    </div>
+                </div>
 
-			<br/>
-			<table width="100%" cellspacing="2" cellpadding="2">
-				<tbody>
-					<% for(i=0; i<output.length; i++) { %>
-						<tr>
-							<td>
-								<strong>
-									<% if(output[i][0] == "adreca") { %>	
-										<label id="lKey">Adreça : </label>
-									<% } else { %>
-										<label id="lKey"><%= output[i][0] %> : </label>
-									<% } %>
-								</strong>
-							</td>
-							<td>
-								<% if(output[i][0] == "Password") { %>
-									<input type="password" id="t<%= output[i][0] %>" value="<%= output[i][1] %>">
-								<% } else if(output[i][0] == "adreca") { %>
-									<textarea rows="3" cols="0" id="t<%= output[i][0] %>"><%= output[i][1] %></textarea></td>
-								<% } else { %>								
-									<input type="text" id="t<%= output[i][0] %>" value="<%= output[i][1] %>">
-								<% } %>
-							</td>
-						</tr>			
-					<% } %>
-					<tr>
-						<td>
-							<button id="btnInfoPhone" class="botoRnd btn100x100" type="button" onclick="app.infoTelefon();">
-    							<img src="img/info1.png" width="20" align="middle"/>
-    						</button>
-						</td>
-						<td align="right">
-							<button id="btnDesar" class="botoRnd btn75x30" type="button" onclick="app.modifParametres();">Desar</button>
-						</td>
-					</tr>							
-				</tbody>
-			</table>	
+                <form role="form" style="clear: both;">
+                    <% for(i=0; i<output.length; i++) { %>
+                        <div class="form-group">
+                                <label for="t<%= output[i][0] %>" class="bold"><%= output[i][0] %></label>
+                            <% if(output[i][0] == "Password") { %>
+                                <input type="password" id="t<%= output[i][0] %>" class="form-control" placeholder="Password personal"  value="<%= output[i][1] %>">
+                            <% } else if(output[i][0] == "adreca") { %>
+                                <textarea class="form-control" rows="3" cols="0" id="t<%= output[i][0] %>"><%= output[i][1] %></textarea>
+                            <% } else { %>
+                                <input type="text" id="t<%= output[i][0] %>" class="form-control" placeholder="Introdueix el teu usuari" value="<%= output[i][1] %>">
+                            <% } %>
+                        </div>
+                    <% } %>
+                </form>
 
-			<br/>
+                <table class="botoneraInferiorParametres" >
+                    <tr>
+                        <td style="text-align: left;" >
+                            <figure>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-chevron-left icon-rounded icon-params" onclick="app.menu();"></i>
+                                </a>
+                            </figure>
+                            <p style="font-size: 1em; margin-left: 0.8em; text-align: center; text-align: left;" class="iconLabel">Tornar</p>
+                        </td>
 
+                        <td style="padding-left: 1.4em;">
+                            <figure style="">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-info-sign icon-rounded icon-params" onclick="app.infoTelefon();"></i>
+                                </a>
+                            </figure>
+                            <p style="font-size: 1em; margin-right: 1.1em; text-align: center;" class="iconLabel">Informació</p>
+                        </td>
+
+                        <td style="text-align: right; padding-left: 1.9em;">
+                            <figure>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-ok icon-rounded icon-desar" onclick="app.modifParametres();"></i>
+                                </a>
+                            </figure>
+                            <p style="font-size: 1em; padding-right: 7pt; text-align: right;" class="iconLabel">Desar</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 		</script>
 		
 		<!-- Informació del dispositiu -->
 		<script type="text/template" id="infoTelefon_template">
-           	<p class="titolSeccio"><label id="txtTitolDreta">Informació dispositiu</label>
-				<button id="btnTornaInfoTelefon" class="boto btn50x30 esquerra" type="button" onclick="app.menu();">&lt;&lt;</button>
-			</p>
+            <div class="divContenido">
+                <div class="titoleccio">
+                    <div style="float: right">
+                        <p class="titolSeccio bold">Informació dispositiu</p>
+                    </div>
+                </div>
 
-			<table border="0" cellspacing="2" cellpadding="2">
-				<tr>
-					<td>Device Name</td>
-					<td><%= deviceName %></td>
-				</tr>
-				<tr>
-					<td>Device Cordova</td>
-					<td><%= deviceCordova %></td>
-				</tr>
-				<tr> 
-	        		<td>Device Platform</td>
-					<td><%= devicePlatform %></td>
-				</tr>
-				<tr> 
-	        		<td>Device UUID</td>
-					<td><%= deviceUUID %></td>
-				</tr>
-				<tr> 
-	        		<td>Device Version</td>
-					<td><%= deviceVersion %></td>
-				</tr>
-				<tr> 
-	        		<td>phoneType</td>
-					<td><%= phoneType %></td>
-				</tr>
-				<tr> 
-	        		<td>deviceId</td>
-					<td><%= deviceId %></td>
-				</tr>
-				<tr> 
-	        		<td>deviceSoftwareVersion</td>
-					<td><%= deviceSoftwareVersion %></td>
-				</tr>
-				<tr> 
-	        		<td>line1Number</td>
-					<td><%= line1Number %></td>
-				</tr>
-				<tr> 
-	        		<td>subscriberId</td>
-					<td><%= subscriberId %></td>
-				</tr>
-				<tr> 
-	        		<td>simState</td>
-					<td><%= simState %></td>
-				</tr>
-				<tr> 
-	        		<td>simCountryIso</td>
-					<td><%= simCountryIso %></td>
-				</tr>
-				<tr> 
-	        		<td>simOperatorName</td>
-					<td><%= simOperatorName %></td>
-				</tr>
-				<tr> 
-	        		<td>simSerialNumber</td>
-					<td><%= simSerialNumber %></td>
-				</tr>
-				<tr> 
-	        		<td>networkCountryIso</td>
-					<td><%= networkCountryIso %></td>
-				</tr>
-				<tr> 
-	        		<td>networkOperator</td>
-					<td><%= networkOperator %></td>
-				</tr>
-				<tr> 
-	        		<td>networkOperatorName</td>
-					<td><%= networkOperatorName %></td>
-				</tr>
-			</table> 
+                <table id="infoTelefonTable" class="table">
+                    <tr>
+                        <th>Atribut</th>
+                        <th>Valor</th>
+                    </tr>
+                    <tr>
+                        <th>Device Name</th>
+                        <td><%= deviceName %></td>
+                    </tr>
+                    <tr>
+                        <th>Device Cordova</th>
+                        <td><%= deviceCordova %></td>
+                    </tr>
+                    <tr>
+                        <th>Device Platform</th>
+                        <td><%= devicePlatform %></td>
+                    </tr>
+                    <tr>
+                        <th>Device UUID</th>
+                        <td><%= deviceUUID %></td>
+                    </tr>
+                    <tr>
+                        <th>Device Version</th>
+                        <td><%= deviceVersion %></td>
+                    </tr>
+                    <tr>
+                        <th>phoneType</th>
+                        <td><%= phoneType %></td>
+                    </tr>
+                    <tr>
+                        <th>deviceId</th>
+                        <td><%= deviceId %></td>
+                    </tr>
+                    <tr>
+                        <th>deviceSoftwareVersion</th>
+                        <td><%= deviceSoftwareVersion %></td>
+                    </tr>
+                    <tr>
+                        <th>line1Number</th>
+                        <td><%= line1Number %></td>
+                    </tr>
+                    <tr>
+                        <th>subscriberId</th>
+                        <td><%= subscriberId %></td>
+                    </tr>
+                    <tr>
+                        <th>simState</th>
+                        <td><%= simState %></td>
+                    </tr>
+                    <tr>
+                        <th>simCountryIso</th>
+                        <td><%= simCountryIso %></td>
+                    </tr>
+                    <tr>
+                        <th>simOperatorName</th>
+                        <td><%= simOperatorName %></td>
+                    </tr>
+                    <tr>
+                        <th>simSerialNumber</th>
+                        <td><%= simSerialNumber %></td>
+                    </tr>
+                    <tr>
+                        <th>networkCountryIso</th>
+                        <td><%= networkCountryIso %></td>
+                    </tr>
+                    <tr>
+                        <th>networkOperator</th>
+                        <td><%= networkOperator %></td>
+                    </tr>
+                    <tr>
+                        <th>networkOperatorName</th>
+                        <td><%= networkOperatorName %></td>
+                    </tr>
+                </table>
+
+                <table class="botoneraInferiorParametres" >
+                    <tr>
+                        <td style="text-align: left;" >
+                            <figure>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-chevron-left icon-rounded icon-params" onclick="app.menu();"></i>
+                                </a>
+                            </figure>
+                            <p style="font-size: 1em; margin-left: 0.8em; text-align: center; text-align: left;" class="iconLabel">Tornar</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 		</script>
 
     </body>
