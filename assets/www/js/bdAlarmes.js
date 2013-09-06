@@ -13,7 +13,6 @@ function initBDAlarmes() {
 		db.transaction( function(tx) {
 			tx.executeSql("CREATE TABLE IF NOT EXISTS alarmesTipus(ID text primary key, NOM text)");
 		});
-		
 	}
 }
   

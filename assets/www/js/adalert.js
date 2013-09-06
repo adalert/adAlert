@@ -43,10 +43,9 @@ var app = (function() {
 	    //
 	    // The scope of 'this' is the event. In order to call the 'receivedEvent'
 	    // function, we must explicity call 'app.receivedEvent(...);'
-	    onDeviceReady: function() {	
+	    onDeviceReady: function() {
 	    	initBDAlarmes();
 	    	connexWS();
-	    	
 	    	app.activa("botonera");
 	    	
 	        window.plugins.phoneinfoplugin.onSuccess = function(data) {
@@ -71,10 +70,13 @@ var app = (function() {
 			};
 			window.plugins.phoneinfoplugin.onError = function(data) { };
 			
-			window.setInterval(RecibeAlarmas,30000); //30 segons
-			
-			window.plugins.phoneinfoplugin.getPhoneInfo();
-			
+	    	window.plugins.phoneinfoplugin.getPhoneInfo();
+			window.plugins.phoneinfoplugin.getSIMInfo();
+			window.plugins.phoneinfoplugin.getNetworkInfo();
+
+			//window.setInterval(function() { RecibeAlarmas(deviceId); )(), 30000); //30 segons
+			window.setInterval(RecibeAlarmas, 30000, deviceId); //30 segons
+
 			obtenirDadesUsuari(deviceId);
 	    },
 	    	    
@@ -107,9 +109,9 @@ var app = (function() {
 	    	
 	    	//alert('Enviant missatge...');
 	    	
-	    	window.plugins.phoneinfoplugin.getPhoneInfo();
-			window.plugins.phoneinfoplugin.getSIMInfo();
-			window.plugins.phoneinfoplugin.getNetworkInfo();
+	    	//window.plugins.phoneinfoplugin.getPhoneInfo();
+			//window.plugins.phoneinfoplugin.getSIMInfo();
+			//window.plugins.phoneinfoplugin.getNetworkInfo();
 	    	
 			var option;
 			var missatge;
@@ -186,9 +188,9 @@ var app = (function() {
 	    infoTelefon: function() {
 	    	var div_res;
 	    	
-			window.plugins.phoneinfoplugin.getPhoneInfo();
-			window.plugins.phoneinfoplugin.getSIMInfo();
-			window.plugins.phoneinfoplugin.getNetworkInfo();
+			//window.plugins.phoneinfoplugin.getPhoneInfo();
+			//window.plugins.phoneinfoplugin.getSIMInfo();
+			//window.plugins.phoneinfoplugin.getNetworkInfo();
 	
 			div_res = _.template($("#infoTelefon_template").html());
 			$("#infoTelefon").html(div_res({deviceName: device.name, 
