@@ -5,13 +5,10 @@
 **/
 
 var WIN_MENU = "botonera";
-var WIN_INFO_TELEFON = "infoTelefon"
-var WIN_PARAMETRES = "parametres"
-var WIN_ALARMES = "alarmes"
-var WIN_WS ="ws"
-
-
-
+var WIN_INFO_TELEFON = "infoTelefon";
+var WIN_PARAMETRES = "parametres";
+var WIN_ALARMES = "alarmes";
+var WIN_WS ="ws";
 
 var app = (function() {
     var phoneType = "";
