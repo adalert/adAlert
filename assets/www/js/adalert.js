@@ -35,6 +35,7 @@ var app = (function() {
 	    // 'load', 'deviceready', 'offline', and 'online'.
 	    bindEvents: function() {
 	        document.addEventListener('deviceready', this.onDeviceReady, false);
+	        //document.addEventListener("backbutton", this.onBackKeyDown, false);	        
 	    },
 	    // deviceready Event Handler
 	    //
@@ -75,6 +76,15 @@ var app = (function() {
 			window.setInterval(RecibeAlarmas, 30000, deviceId); //30 segons
 
 			obtenirDadesUsuari(deviceId);
+			
+			document.addEventListener("backbutton", app.onBackKeyDown, false);
+
+	    },
+	    
+	    onBackKeyDown: function() {
+	    	//De moment, farem que al intentar tornar a enrere, l'aplicacio no faci res
+	    	alert('Has apretado el boton atras');
+	    	//app.onPause();
 	    },
 	    	    
 	    // Menú prinicpal
