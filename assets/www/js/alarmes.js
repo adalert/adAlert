@@ -29,10 +29,14 @@ function OnSuccess(data, status) {
     $(data).find('Type').each(function( index ) {
     	addAlarmesTipus($(this).find('ID').text(), $(this).find('NOM').text()); 	
     });
+    
+    app.logoWithConnection();
 }
 
 function OnError(request, status, error) {
-	alert('Error intentant connectar amb el WebService');
+	//alert('Error intentant connectar amb el WebService');
+	//console.log('error connexio WS');
+	app.logoWithoutConnection();
 }  
 
 function obtenirDadesUsuari(pidDispositiu) {
@@ -72,10 +76,14 @@ function DadesUsuOnSuccess(data, status) {
     });
 
 	$("#usuEdificis").html(edifici);
+	
+	app.logoWithConnection();
 }
 
 function DadesUsuOnError(request, status, error) {
-	alert('Error intentant connectar amb el WebService per obtenir Edificis');
+	//console.log('error connexio WS');
+	//alert('Error intentant connectar amb el WebService per obtenir Edificis');
+	app.logoWithoutConnection();
 }  
 
 
@@ -100,13 +108,14 @@ function enviar(pidDispositiu, pTipus, pMsg) {
 
 function EnviamentOnSuccess(data, status) {
 	//alert('Missatge enviat correctament!');
+	app.logoWithConnection();
 }
 
 function EnviamentOnError(request, status, error) {
-	alert('Error intentant connectar amb el WebService per enviar alarmes');
+	//console.log('error connexio WS');
+	//alert('Error intentant connectar amb el WebService per enviar alarmes');
+	app.logoWithoutConnection();
 }
-
-
 
 function RecibeAlarmas(pIdDispositiu) {
 	// Connectem al WS per baixar alarmes	
@@ -129,7 +138,6 @@ function RecibeAlarmas(pIdDispositiu) {
    });
 }
 
-
 function RecibeOnSuccess(data, status) {
 	var texto;
 	var vacia = false;
@@ -145,28 +153,6 @@ function RecibeOnSuccess(data, status) {
 	
 	if(vacia==false) {
 		navigator.notification.vibrate(2000);
-	//	window.plugins.statusBarNotification.notify('Noves notificacions rebudes', {
-	//		   body: texto,
-	//		   tag: 'download',
-	//		   onclick: function() {
-	//				$(data).find('Alarm').each(function( index ) {
-	//					if($(this).find('IDAprovador').text()=='00'){
-	//						navigator.notification.alert(
-	//							$(this).find('Missatge').text()	,     // mensaje (message)
-	//							'Tancar',							 // titulo (title)
-	//							'Alarma ' + $(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
-	//						    );
-	//					} else {
-	//						navigator.notification.alert(
-	//							$(this).find('text_FalsaAlarma').text()	,     // mensaje (message)
-	//							'Tancar',							 // titulo (title)
-	//							'Falsa Alarma ' + $(this).find('TipusAlarma').text()                // nombre del botón (buttonName)
-	//							);
-	//					}
-	//					
-	//				});
-	//		   }
-	//		});
 		
 		window.plugins.statusBarNotification.notify('Noves notificacions rebudes', {
 		   body: texto,
@@ -180,10 +166,13 @@ function RecibeOnSuccess(data, status) {
 		
 		navigator.notification.beep(1);	
 	}
+	
+	app.logoWithConnection();
 }
 
 function RecibeOnError(request, status, error) {
-	alert("Error intentant connectar amb el WebService per rebre missatges.\n(" + error + ")");
+	//alert("Error intentant connectar amb el WebService per rebre missatges.\n(" + error + ")");
+	app.logoWithoutConnection();
 }
  
 

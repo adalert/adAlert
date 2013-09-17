@@ -84,7 +84,6 @@ var app = (function() {
 	    onBackKeyDown: function() {
 	    	//De moment, farem que al intentar tornar a enrere, l'aplicacio no faci res
 	    	alert('Has apretado el boton atras');
-	    	//app.onPause();
 	    },
 	    	    
 	    // Menú prinicpal
@@ -176,7 +175,6 @@ var app = (function() {
 					Emissor: $(obj).find('Nom').text(),
 					Ubicacio: $(obj).find('UbicacioE').text(),
 					Area: $(obj).find('AreaE').text()} ));
-					//Edifici: $(obj).find('nom_centre').text()} ));
 	    	} else {
 	    		var div_res = _.template($("#ws_template").html());
 	    		$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
@@ -185,9 +183,7 @@ var app = (function() {
 	    			Emissor: $(obj).find('NomAprovador').text(),
 	    			Ubicacio: $(obj).find('UbicacioA').text(),
 	    			Area: $(obj).find('AreaA').text()} ));
-	    			//Edifici: $(obj).find('nom_centre').text()} ));
 	    	}
-	    	
 	    	app.activa(WIN_WS);
 	    },
 	    
@@ -220,6 +216,30 @@ var app = (function() {
 
 			app.activa(WIN_INFO_TELEFON);
 	    },
+	    
+	    //
+		// Muestra en el logo de la APP indicando que SI tiene conexión.
+		//
+		logoWithConnection: function(){
+		  	var logo = $('#logoApp');
+		   	if( logo.hasClass('twinkle') ){
+		    	logo.attr('src', 'img/logo.png');
+		    	logo.removeClass('twinkle');
+		    	$('.headerTxtSubTitle').hide();
+		    }
+		},
+	    
+	    //
+		// Muestra en el logo de la APP indicando que NO tiene conexión.
+		//
+		logoWithoutConnection: function(){
+		    var logo = $('#logoApp');
+		    if( !logo.hasClass('twinkle') ){
+			   	logo.attr('src', 'img/logo_rojo.png');
+			   	logo.addClass('twinkle');
+			   	$('.headerTxtSubTitle').show();
+			}
+		},
 	    
 	    activa: function(obj) {
 	    	$("#botonera").hide();
