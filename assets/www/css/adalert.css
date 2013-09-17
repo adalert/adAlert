@@ -104,6 +104,14 @@ a{
 	left:2px;
 }
 
+.headerNoConnectionTxt{
+	position:relative;
+	float:left;
+	top: 2.4em;
+	left: 75px;
+	color: red;
+}
+
 .headerTitle {
 	position:relative;
 	float:right;
@@ -112,6 +120,7 @@ a{
 	/*width: 250px;*/
 	/*color:White;*/
 }
+
 .headerTitle p {
     color: #777;
     text-align: right;
@@ -126,6 +135,25 @@ a{
 	font-size: 0.8em;
 }
 
+/* PARPADEO LOGO HEADER */
+@-webkit-keyframes twinkly {
+    0%   { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+@-moz-keyframes twinkly  {
+    0%   { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+@-ms-keyframes twinkly  {
+    0%   { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+.twinkle{
+    -webkit-animation: twinkly 1s alternate infinite;
+    -moz-animation: twinkly 1s alternate infinite;
+    -ms-animation: twinkly 1s alternate infinite;
+}
 
 
 /* CARREGANT i ERRORS */

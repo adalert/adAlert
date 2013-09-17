@@ -225,7 +225,7 @@ var app = (function() {
 		   	if( logo.hasClass('twinkle') ){
 		    	logo.attr('src', 'img/logo.png');
 		    	logo.removeClass('twinkle');
-		    	$('.headerTxtSubTitle').hide();
+		    	$('.headerNoConnectionTxt').hide();
 		    }
 		},
 	    
@@ -237,7 +237,7 @@ var app = (function() {
 		    if( !logo.hasClass('twinkle') ){
 			   	logo.attr('src', 'img/logo_rojo.png');
 			   	logo.addClass('twinkle');
-			   	$('.headerTxtSubTitle').show();
+			   	$('.headerNoConnectionTxt').show();
 			}
 		},
 	    
