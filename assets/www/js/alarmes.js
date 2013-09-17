@@ -6,9 +6,7 @@ function connexWS() {
 	db.transaction( function(tx) {
 		 tx.executeSql("SELECT * FROM parametres WHERE key='adreca'", [],
              function(tx, result){
-			 	//alert(result.rows.item(0)['value']);
 			 	sURL = result.rows.item(0)['value'] + "/GetTypeAlarms";
-			 	//alert(sURL);
 			 	$.ajax({
 					url: sURL,
 			        type: "POST",
@@ -34,7 +32,6 @@ function OnSuccess(data, status) {
 }
 
 function OnError(request, status, error) {
-	//alert('Error intentant connectar amb el WebService');
 	//console.log('error connexio WS');
 	app.logoWithoutConnection();
 }  
@@ -81,7 +78,6 @@ function DadesUsuOnSuccess(data, status) {
 }
 
 function DadesUsuOnError(request, status, error) {
-	//console.log('error connexio WS');
 	//alert('Error intentant connectar amb el WebService per obtenir Edificis');
 	app.logoWithoutConnection();
 }  
@@ -112,7 +108,6 @@ function EnviamentOnSuccess(data, status) {
 }
 
 function EnviamentOnError(request, status, error) {
-	//console.log('error connexio WS');
 	//alert('Error intentant connectar amb el WebService per enviar alarmes');
 	app.logoWithoutConnection();
 }

@@ -1,5 +1,4 @@
 // Gestió de favorits
-// moga 2013
 
 
   // Un mercat seleccionat com a favorit, (id del mercat)
