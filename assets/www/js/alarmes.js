@@ -82,7 +82,6 @@ function DadesUsuOnError(request, status, error) {
 	app.logoWithoutConnection();
 }  
 
-
 function enviar(pidDispositiu, pTipus, pMsg) {
 	var sURL;
 	
