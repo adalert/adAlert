@@ -214,6 +214,7 @@ var app = (function() {
 		    	logo.attr('src', 'img/logo.png');
 		    	logo.removeClass('twinkle');
 		    	$('.headerNoConnectionTxt').hide();
+		    	$('.headerLogo').show();
 		    }
 		    return true;
 		},
