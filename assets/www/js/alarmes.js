@@ -108,8 +108,9 @@ function EnviamentOnSuccess(data, status) {
 }
 
 function EnviamentOnError(request, status, error) {
-	//alert('Error intentant connectar amb el WebService per enviar alarmes');
 	app.logoWithoutConnection();
+	alert('Error: ' + error);
+
 }
 
 function RecibeAlarmas(pIdDispositiu) {
