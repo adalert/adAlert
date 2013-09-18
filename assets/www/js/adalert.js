@@ -215,6 +215,7 @@ var app = (function() {
 		    	logo.removeClass('twinkle');
 		    	$('.headerNoConnectionTxt').hide();
 		    }
+		    return true;
 		},
 	    
 		// Muestra en el logo de la APP indicando que NO tiene conexión.
@@ -225,6 +226,7 @@ var app = (function() {
 			   	logo.addClass('twinkle');
 			   	$('.headerNoConnectionTxt').show();
 			}
+		    return true;
 		},
 	    
 	    activa: function(obj) {
