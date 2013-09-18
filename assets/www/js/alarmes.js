@@ -72,9 +72,17 @@ function DadesUsuOnSuccess(data, status) {
 			edifici = edifici + ', ' + $(this).find('Nom').text();
     });
 
+	if (edifici=='00') {
+		edifici = 'No es troba dispositiu';
+	} 
+	
 	$("#usuEdificis").html(edifici);
 	
-	app.logoWithConnection();
+	if(edifici == 'No es troba dispositiu'){
+		app.logoWithoutConnection();
+	} else {
+		app.logoWithConnection();	
+	}
 }
 
 function DadesUsuOnError(request, status, error) {

@@ -7,8 +7,8 @@ function initBDAlarmes() {
 		db.transaction( function(tx) {
 			tx.executeSql("CREATE TABLE IF NOT EXISTS parametres(key text primary key, value text)");
 			tx.executeSql("INSERT INTO parametres(key, value) VALUES('adreca','http://213.27.242.251:8000/adAlert_WS/adAlert_WS.asmx')");
-			tx.executeSql("INSERT INTO parametres(key, value) VALUES('Usuari','admin')");
-			tx.executeSql("INSERT INTO parametres(key, value) VALUES('Password','admin')");
+			tx.executeSql("INSERT INTO parametres(key, value) VALUES('Usuari','usuDispositiu')");
+			tx.executeSql("INSERT INTO parametres(key, value) VALUES('Password','usuDispositiu')");
 		});
 		db.transaction( function(tx) {
 			tx.executeSql("CREATE TABLE IF NOT EXISTS alarmesTipus(ID text primary key, NOM text)");
