@@ -32,8 +32,8 @@ function OnSuccess(data, status) {
 }
 
 function OnError(request, status, error) {
-	//console.log('error connexio WS');
 	app.logoWithoutConnection();
+	
 }  
 
 function obtenirDadesUsuari(pidDispositiu) {
@@ -116,8 +116,9 @@ function EnviamentOnSuccess(data, status) {
 
 function EnviamentOnError(request, status, error) {
 	app.logoWithoutConnection();
-	alert('Error: ' + error);
-
+	alert('Error: ' + $(error));
+	alert('Request: ' + request.responseText);
+	alert('status: ' + status);
 }
 
 function RecibeAlarmas(pIdDispositiu) {

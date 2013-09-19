@@ -192,24 +192,6 @@ var app = (function() {
 	    	var div_res = _.template($("#ws_template").html());
 	    	$("#ws").html(div_res({output: output}));
 	    	
-	    	//if($(obj).find('IDAprovador').text()=='00'){
-	    	//	var div_res = _.template($("#ws_template").html());
-	    	//	$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
-			//		TipusAlarma: $(obj).find('TipusAlarma').text(),
-			//		Missatge: $(obj).find('Missatge').text(),
-			//		Emissor: $(obj).find('Nom').text(),
-			//		Ubicacio: $(obj).find('UbicacioE').text(),
-			//		Area: $(obj).find('AreaE').text()} ));
-	    	//} else {
-	    	//	var div_res = _.template($("#ws_template").html());
-	    	//	$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
-	    	//		TipusAlarma: $(obj).find('TipusAlarma').text(),
-	    	//		Missatge: $(obj).find('text_FalsaAlarma').text(),
-	    	//		Emissor: $(obj).find('NomAprovador').text(),
-	    	//		Ubicacio: $(obj).find('UbicacioA').text(),
-	    	//		Area: $(obj).find('AreaA').text()} ));
-	    	//}
-	    	
 	    	app.activa(WIN_WS);
 	    },
 	    
