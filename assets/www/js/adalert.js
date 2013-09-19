@@ -134,7 +134,11 @@ var app = (function() {
 	    	
 	    	console.log(deviceId);
 	    	
-	    	enviar(deviceId,option,missatge);
+	    	if ($("#usuEdificis").text()=='No es troba dispositiu'){
+	    		alert('No pot enviar alarmes. No es troba el dispositiu a la BBDD.');
+	    	} else {
+	    		enviar(deviceId,option,missatge);
+	    	}
 	    	
 	    	app.activa(WIN_MENU);
 	    },
@@ -160,24 +164,52 @@ var app = (function() {
 	    },
 	    
 	    compruebaAlarmas: function(obj){
-
-	    	if($(obj).find('IDAprovador').text()=='00'){
-	    		var div_res = _.template($("#ws_template").html());
-	    		$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
-					TipusAlarma: $(obj).find('TipusAlarma').text(),
-					Missatge: $(obj).find('Missatge').text(),
-					Emissor: $(obj).find('Nom').text(),
-					Ubicacio: $(obj).find('UbicacioE').text(),
-					Area: $(obj).find('AreaE').text()} ));
-	    	} else {
-	    		var div_res = _.template($("#ws_template").html());
-	    		$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
-	    			TipusAlarma: $(obj).find('TipusAlarma').text(),
-	    			Missatge: $(obj).find('text_FalsaAlarma').text(),
-	    			Emissor: $(obj).find('NomAprovador').text(),
-	    			Ubicacio: $(obj).find('UbicacioA').text(),
-	    			Area: $(obj).find('AreaA').text()} ));
-	    	}
+	    	var output = [];
+	    
+	    	$(obj).find('Alarm').each(function( index ) {
+	    		output.push(['Alarma ',index+1]);
+	    		if($(this).find('IDAprovador').text()=='00'){
+		    		output.push(['Data i Hora', $(this).find('dataHora').text()]);
+		    		output.push(['Tipus Alarma', $(this).find('TipusAlarma').text()]);
+		    		output.push(['Missatge', $(this).find('Missatge').text()]);
+		    		output.push(['Emissor', $(this).find('Nom').text()]);
+		    		output.push(['Ubicacio', $(this).find('UbicacioE').text()]);
+		    		output.push(['Area', $(this).find('AreaE').text()]);
+		    		output.push([' ',' ']);
+		    		output.push([' ',' ']);
+	    		} else {
+	    			output.push(['Data i Hora', $(this).find('dataHora').text()]);
+		    		output.push(['Tipus Alarma', $(this).find('TipusAlarma').text()]);
+		    		output.push(['Missatge', $(this).find('text_FalsaAlarma').text()]);
+		    		output.push(['Emissor', $(this).find('NomAprovador').text()]);
+		    		output.push(['Ubicacio', $(this).find('UbicacioA').text()]);
+		    		output.push(['Area', $(this).find('AreaA').text()]);
+		    		output.push([' ',' ']);
+		    		output.push([' ',' ']);
+	    		}
+	    	});
+    		
+	    	var div_res = _.template($("#ws_template").html());
+	    	$("#ws").html(div_res({output: output}));
+	    	
+	    	//if($(obj).find('IDAprovador').text()=='00'){
+	    	//	var div_res = _.template($("#ws_template").html());
+	    	//	$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
+			//		TipusAlarma: $(obj).find('TipusAlarma').text(),
+			//		Missatge: $(obj).find('Missatge').text(),
+			//		Emissor: $(obj).find('Nom').text(),
+			//		Ubicacio: $(obj).find('UbicacioE').text(),
+			//		Area: $(obj).find('AreaE').text()} ));
+	    	//} else {
+	    	//	var div_res = _.template($("#ws_template").html());
+	    	//	$("#ws").html(div_res({dataHora: $(obj).find('dataHora').text(), 
+	    	//		TipusAlarma: $(obj).find('TipusAlarma').text(),
+	    	//		Missatge: $(obj).find('text_FalsaAlarma').text(),
+	    	//		Emissor: $(obj).find('NomAprovador').text(),
+	    	//		Ubicacio: $(obj).find('UbicacioA').text(),
+	    	//		Area: $(obj).find('AreaA').text()} ));
+	    	//}
+	    	
 	    	app.activa(WIN_WS);
 	    },
 	    

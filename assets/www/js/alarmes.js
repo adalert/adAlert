@@ -161,9 +161,10 @@ function RecibeOnSuccess(data, status) {
 		   body: texto,
 		   tag: 'download',
 		   onclick: function() {
-				$(data).find('Alarm').each(function( index ) {
-					app.compruebaAlarmas(this);
-				});
+				app.compruebaAlarmas($(data));
+				//$(data).find('Alarm').each(function( index ) {
+				//	app.compruebaAlarmas(this);
+				//});
 		   }
 		});
 		
