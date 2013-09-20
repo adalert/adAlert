@@ -49,7 +49,7 @@ var app = (function() {
 	        window.plugins.phoneinfoplugin.onSuccess = function(data) {
 				if (data.action == "getPhoneInfo") {
 				    phoneType = data.getPhoneType; 
-				    deviceId = data.getDeviceId;
+				    deviceId = device.uuid;
 				    deviceSoftwareVersion = data.getDeviceSoftwareVersion; 
 				    line1Number = data.getLine1Number; 
 				    subscriberId = data.getSubscriberId;
@@ -206,7 +206,7 @@ var app = (function() {
 			        deviceUUID: device.uuid, 
 			        deviceVersion: device.version, 
 			        phoneType: phoneType,
-			        deviceId: deviceId,
+			        deviceId: device.getDeviceId,
 			        deviceSoftwareVersion: deviceSoftwareVersion, 
 			        line1Number: line1Number,
 			        subscriberId: subscriberId,
