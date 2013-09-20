@@ -18,3 +18,4 @@ Projecte adAlert
 2013/08/30 --> Zarco & Dani Vaquero --> Millores interfície gràfica i enviament alarmes. Falta recepció falsa alarma.
 2013/09/05 --> Agegir paràmetre amb id dispositiu a sendAlarm
 2013/09/17 --> Zarco, logo canvia color segons connexio
+2013/09/20 --> S'arregla refresc nova alarma

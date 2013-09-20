@@ -43,6 +43,7 @@ function listAlarmesTipus() {
                 }
                 var div_res = _.template($("#alarmes_template").html());
                 $("#alarmes").html(div_res({output: output}));
+                $("#alarmes").show();
             }
 		 );
     });
