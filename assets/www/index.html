@@ -26,7 +26,7 @@
             <nav class="navbar navbar-default navbar-static-top" >
                 <div class="headerLogo"><img id="logoApp" src="img/logo_rojo.png" class="img-responsive twinkle" width="70px" /></div>
                 <div class="headerNoConnectionTxt">
-                	<p class="headerTxtSubTitle">Sense connexió</p>
+                	<p class="headerTxtSubTitleError">Sense connexió</p>
                 </div>
                 <div class="headerTitle">
                     <p class="headerTxtTitle">adAlert mobile</p>
@@ -127,6 +127,12 @@
                         <select id="tipusAlarma" class="form-control" style="width: 15em;">
                             <% for(i=0; i<output.length; i++) { %>
                                 <option value = <%= output[i][0] %> id="t<%= output[i][0] %>" selected><%= output[i][1] %></option>
+                            <% } %>
+                        </select>
+						<label class="bold">Seleccionar Edifici</label>
+                        <select id="Edifici" class="form-control" style="width: 15em;">
+                            <% for(x=0; x<outputEdif.length; x++) { %>
+                                <option value = <%= outputEdif[x][0] %> id="e<%= outputEdif[x][0] %>" selected><%outputEdif[x][1] %></option>
                             <% } %>
                         </select>
                     </div>

@@ -8,7 +8,7 @@ var WIN_MENU = "botonera";
 var WIN_INFO_TELEFON = "infoTelefon";
 var WIN_PARAMETRES = "parametres";
 var WIN_ALARMES = "alarmes";
-var WIN_WS ="ws";
+var WIN_WS ="recepcio";
 
 var app = (function() {
     var phoneType = "";
@@ -94,6 +94,7 @@ var app = (function() {
 	    // Menú alarmes
 	    alarmes: function() {
 	    	listAlarmesTipus();
+	    	listEdificis();
 	    	
 	    	app.activa(WIN_ALARMES);
 	    },
@@ -143,6 +144,8 @@ var app = (function() {
 	    	app.activa(WIN_MENU);
 	    },
 	    
+	    
+	    
 	    modifParametres: function(){
 	    	
 	    	$('textarea[id^="t"]').each(function() {
@@ -167,9 +170,11 @@ var app = (function() {
 	    	var output = [];
 	    
 	    	$(obj).find('Alarm').each(function( index ) {
-	    		output.push(['Alarma ',index+1]);
+	    		//output.push(['Alarma ',index+1]);
 	    		if($(this).find('IDAprovador').text()=='00'){
-		    		output.push(['Data i Hora', $(this).find('dataHora').text()]);
+	    			output.push(['Alarma ',index+1]);
+	    			output.push(['Edifici', $(this).find('Edifici').text()]);
+	    			output.push(['Data i Hora', $(this).find('dataHora').text()]);
 		    		output.push(['Tipus Alarma', $(this).find('TipusAlarma').text()]);
 		    		output.push(['Missatge', $(this).find('Missatge').text()]);
 		    		output.push(['Emissor', $(this).find('Nom').text()]);
@@ -178,10 +183,12 @@ var app = (function() {
 		    		output.push([' ',' ']);
 		    		output.push([' ',' ']);
 	    		} else {
+	    			output.push(['Falsa Alarma ',index+1]);
+	    			output.push(['Edifici', $(this).find('Edifici').text()]);
 	    			output.push(['Data i Hora', $(this).find('dataHora').text()]);
 		    		output.push(['Tipus Alarma', $(this).find('TipusAlarma').text()]);
 		    		output.push(['Missatge', $(this).find('text_FalsaAlarma').text()]);
-		    		output.push(['Emissor', $(this).find('NomAprovador').text()]);
+		    		output.push(['Aprovador', $(this).find('NomAprovador').text()]);
 		    		output.push(['Ubicacio', $(this).find('UbicacioA').text()]);
 		    		output.push(['Area', $(this).find('AreaA').text()]);
 		    		output.push([' ',' ']);
@@ -189,8 +196,11 @@ var app = (function() {
 	    		}
 	    	});
     		
-	    	var div_res = _.template($("#ws_template").html());
-	    	$("#ws").html(div_res({output: output}));
+	    	var div_res = _.template($("#recepcio_template").html());
+	    	$("#recepcio").html(div_res({output: output}));
+	    	$("#recepcio").show();
+	    	
+	    	app.logoWithConnection();
 	    	
 	    	app.activa(WIN_WS);
 	    },
@@ -249,7 +259,7 @@ var app = (function() {
 	    	$("#infoTelefon").hide();
 	    	$("#parametres").hide();
 	    	$("#alarmes").hide();
-	    	$("#ws").hide();
+	    	$("#recepcio").hide();
 	    		    	
 	    	$("#" + obj).show();
 	    }

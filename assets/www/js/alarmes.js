@@ -63,13 +63,16 @@ function DadesUsuOnSuccess(data, status) {
 	$("#usuEdificis").html(edifici);
 	$("#usuNom").html(usuari);
 	
-	$("#usuNom").html($(data).find('Usu').text());
-
 	$(data).find('Edifici').each(function( index ) {
+		
+		addEdificis($(this).find('codiEdifici').text(), $(this).find('Nom').text());
+		
 		if(edifici=='')
 			edifici = $(this).find('Nom').text();
 		else
 			edifici = edifici + ', ' + $(this).find('Nom').text();
+		if(usuari=='')
+			usuari = $(this).find('Usu').text();
     });
 
 	if (edifici=='00') {
@@ -77,12 +80,14 @@ function DadesUsuOnSuccess(data, status) {
 	} 
 	
 	$("#usuEdificis").html(edifici);
+	$("#usuNom").html(usuari);
 	
 	if(edifici == 'No es troba dispositiu'){
 		app.logoWithoutConnection();
 	} else {
 		app.logoWithConnection();	
 	}
+	
 }
 
 function DadesUsuOnError(request, status, error) {
@@ -116,9 +121,8 @@ function EnviamentOnSuccess(data, status) {
 
 function EnviamentOnError(request, status, error) {
 	app.logoWithoutConnection();
-	alert('Error: ' + $(error));
-	alert('Request: ' + request.responseText);
-	alert('status: ' + status);
+	$('.headerTxtSubTitleError').html('Error enviant alarma');
+	$('.headerTxtSubTitleError').show();
 }
 
 function RecibeAlarmas(pIdDispositiu) {
@@ -163,9 +167,6 @@ function RecibeOnSuccess(data, status) {
 		   tag: 'download',
 		   onclick: function() {
 				app.compruebaAlarmas($(data));
-				//$(data).find('Alarm').each(function( index ) {
-				//	app.compruebaAlarmas(this);
-				//});
 		   }
 		});
 		
@@ -178,6 +179,8 @@ function RecibeOnSuccess(data, status) {
 function RecibeOnError(request, status, error) {
 	//alert("Error intentant connectar amb el WebService per rebre missatges.\n(" + error + ")");
 	app.logoWithoutConnection();
+	$('.headerTxtSubTitleError').html('Error descarregant alarmes');
+	$('.headerTxtSubTitleError').show();
 }
  
 

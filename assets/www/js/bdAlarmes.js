@@ -13,6 +13,9 @@ function initBDAlarmes() {
 		db.transaction( function(tx) {
 			tx.executeSql("CREATE TABLE IF NOT EXISTS alarmesTipus(ID text primary key, NOM text)");
 		});
+		db.transaction( function(tx) {
+			tx.executeSql("CREATE TABLE IF NOT EXISTS edificis(codiEdifici text primary key, Nom text)");
+		});
 	}
 }
   
@@ -48,6 +51,23 @@ function listAlarmesTipus() {
 		 );
     });
 }
+
+function listEdificis() {
+	db.transaction( function(tx) {
+		 var outputEdif = [];
+		 tx.executeSql("SELECT * FROM edificis", [],
+            function(tx, result){
+                for(var i=0; i < result.rows.length; i++) {
+                	outputEdif.push([result.rows.item(i)['codiEdifici'],
+                            result.rows.item(i)['Nom']]);
+                }
+                var div_res = _.template($("#alarmes_template").html());
+                $("#alarmes").html(div_res({outputEdif: outputEdif}));
+                $("#alarmes").show();
+            }
+		 );
+    });
+}
  
 function addParametre(pKey, pValue) {
 	db.transaction( function(tx) {
@@ -75,5 +95,11 @@ function modifParametre(pKey, pValue) {
 function addAlarmesTipus(pKey, pValue) {
 	db.transaction( function(tx) {
 		tx.executeSql("INSERT INTO alarmesTipus(ID, NOM) VALUES(?,?)", [pKey, pValue]);
+	});
+}
+
+function addEdificis(pKey, pValue) {
+	db.transaction( function(tx) {
+		tx.executeSql("INSERT INTO edificis(codiEdifici, Nom) VALUES(?,?)", [pKey, pValue]);
 	});
 }

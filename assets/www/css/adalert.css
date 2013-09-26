@@ -135,6 +135,10 @@ a{
 	font-size: 0.8em;
 }
 
+.headerTxtSubTitleError {
+	font-size: 0.8em;
+}
+
 /* PARPADEO LOGO HEADER */
 @-webkit-keyframes twinkly {
     0%   { opacity: 0.4; }
