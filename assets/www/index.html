@@ -46,6 +46,7 @@
                         </figure>
                         <p class="iconLabel">Enviar alarma</p>
                     </div>
+                    
                     <div class="botoneraInferior" >
                         <div id="infoUser" class="" style="float: left">
                             <ul>
@@ -129,16 +130,18 @@
                                 <option value = <%= output[i][0] %> id="t<%= output[i][0] %>" selected><%= output[i][1] %></option>
                             <% } %>
                         </select>
-						<label class="bold">Seleccionar Edifici</label>
+                    </div>
+					<div id="divEdificis" class="form-group">
+						<label for="tipusAlarma" class="bold">Seleccionar Edifici</label>
                         <select id="Edifici" class="form-control" style="width: 15em;">
                             <% for(x=0; x<outputEdif.length; x++) { %>
-                                <option value = <%= outputEdif[x][0] %> id="e<%= outputEdif[x][0] %>" selected><%outputEdif[x][1] %></option>
+                                <option value = <%= outputEdif[x][0] %> id="e<%= outputEdif[x][0] %>" selected><%= outputEdif[x][1] %></option>
                             <% } %>
                         </select>
-                    </div>
+					</div>
                     <div class="form-group">
                         <label for="tipusAlarma" class="bold">Missatge</label>
-                        <textarea class="form-control" rows="10" cols="30" id=txtMissatge wrap="hard"></textarea>
+                        <textarea class="form-control" rows="5" cols="30" id=txtMissatge wrap="hard"></textarea>
                     </div>
                 </form>
 

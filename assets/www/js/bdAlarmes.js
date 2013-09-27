@@ -44,25 +44,34 @@ function listAlarmesTipus() {
                	 output.push([result.rows.item(i)['ID'],
                             result.rows.item(i)['NOM']]);
                 }
-                var div_res = _.template($("#alarmes_template").html());
-                $("#alarmes").html(div_res({output: output}));
-                $("#alarmes").show();
+                
+                listEdificis(output);
             }
 		 );
     });
 }
 
-function listEdificis() {
+function listEdificis(output) {
 	db.transaction( function(tx) {
 		 var outputEdif = [];
 		 tx.executeSql("SELECT * FROM edificis", [],
             function(tx, result){
-                for(var i=0; i < result.rows.length; i++) {
+			 	for(var i=0; i < result.rows.length; i++) {
                 	outputEdif.push([result.rows.item(i)['codiEdifici'],
                             result.rows.item(i)['Nom']]);
                 }
+			 	outputEdif.push(['TOTS','TOTS']);
+			 	
                 var div_res = _.template($("#alarmes_template").html());
-                $("#alarmes").html(div_res({outputEdif: outputEdif}));
+                $("#alarmes").html(div_res({output: output,
+                	outputEdif: outputEdif}));
+                
+                if(result.rows.length==1){
+                	$("#divEdificis").hide();
+                } else {
+                	$("#divEdificis").show();
+                }
+                
                 $("#alarmes").show();
             }
 		 );

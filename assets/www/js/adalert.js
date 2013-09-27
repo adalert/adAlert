@@ -93,9 +93,9 @@ var app = (function() {
 	    
 	    // Menú alarmes
 	    alarmes: function() {
+	    		    	
 	    	listAlarmesTipus();
-	    	listEdificis();
-	    	
+	    		    	
 	    	app.activa(WIN_ALARMES);
 	    },
 
@@ -116,29 +116,30 @@ var app = (function() {
     	
 			var option;
 			var missatge;
+			var edifici="";
 			
 	    	$('option[id^="t"]').each(function() {
-	    		console.log($(this).attr("id").substring(1));
-	    		console.log($(this).val());
-	    		console.log($(this).attr("selected"));
 	    		if ($(this).attr("selected")){
-	    			console.log($(this).val());
 	    			option = ($(this).val());
 	    		}
 	    	});	
 	    	
 	    	$('textarea[id^="t"]').each(function() {
-	    		console.log($(this).attr("id").substring(1));
-	    		console.log($(this).val());
 	    		missatge = ($(this).val());
 	    	});
+	    	
+	    	$('option[id^="e"]').each(function() {
+	    		if ($(this).attr("selected")){
+	    			edifici = ($(this).val());
+	    		}
+	    	});	
 	    	
 	    	console.log(deviceId);
 	    	
 	    	if ($("#usuEdificis").text()=='No es troba dispositiu'){
 	    		alert('No pot enviar alarmes. No es troba el dispositiu a la BBDD.');
 	    	} else {
-	    		enviar(deviceId,option,missatge);
+	    		enviar(deviceId,option,edifici,missatge);
 	    	}
 	    	
 	    	app.activa(WIN_MENU);

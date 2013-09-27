@@ -88,6 +88,7 @@ function DadesUsuOnSuccess(data, status) {
 		app.logoWithConnection();	
 	}
 	
+	
 }
 
 function DadesUsuOnError(request, status, error) {
@@ -95,7 +96,7 @@ function DadesUsuOnError(request, status, error) {
 	app.logoWithoutConnection();
 }  
 
-function enviar(pidDispositiu, pTipus, pMsg) {
+function enviar(pidDispositiu, pTipus, pEdifici, pMsg) {
 	var sURL;
 	
 	db.transaction( function(tx) {
@@ -105,7 +106,7 @@ function enviar(pidDispositiu, pTipus, pMsg) {
 			 	$.ajax({
 					url: sURL,
 			        type: "POST",
-			        data: {pDispositiu : pidDispositiu, pTypeAlarm : pTipus, pMissatge : pMsg, pUsu : result.rows.item(1)['value'], pPass : result.rows.item(2)['value']},
+			        data: {pDispositiu : pidDispositiu, pTypeAlarm : pTipus, pCodEdifici: pEdifici, pMissatge : pMsg, pUsu : result.rows.item(1)['value'], pPass : result.rows.item(2)['value']},
 			        success: EnviamentOnSuccess,
 			        error: EnviamentOnError
 			    });
