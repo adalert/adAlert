@@ -130,10 +130,13 @@ var app = (function() {
 	    	
 	    	$('option[id^="e"]').each(function() {
 	    		if ($(this).attr("selected")){
-	    			edifici = ($(this).val());
+	    			if(!($(this).val())=="TOTS"){
+	    				edifici = ($(this).val());
+	    			}
 	    		}
 	    	});	
 	    	
+
 	    	console.log(deviceId);
 	    	
 	    	if ($("#usuEdificis").text()=='No es troba dispositiu'){
