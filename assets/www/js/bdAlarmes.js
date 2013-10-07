@@ -103,12 +103,14 @@ function modifParametre(pKey, pValue) {
 
 function addAlarmesTipus(pKey, pValue) {
 	db.transaction( function(tx) {
+		tx.executeSql("DELETE FROM alarmesTipus");
 		tx.executeSql("INSERT INTO alarmesTipus(ID, NOM) VALUES(?,?)", [pKey, pValue]);
 	});
 }
 
 function addEdificis(pKey, pValue) {
 	db.transaction( function(tx) {
+		tx.executeSql("DELETE FROM edificis");
 		tx.executeSql("INSERT INTO edificis(codiEdifici, Nom) VALUES(?,?)", [pKey, pValue]);
 	});
 }
